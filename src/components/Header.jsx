@@ -1,7 +1,8 @@
 import React from 'react';
 import './Header.css';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
-import logo from '../assets/logo.png';  // Import logo image
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import logo from '../assets/logo.png';
 
 const Header = () => (
   <header className="bg-blue-700 text-white py-4 shadow-xl flex items-center justify-between">
@@ -15,36 +16,36 @@ const Header = () => (
     <nav>
       <ul className="flex space-x-6">
         <li>
-          <a
-            href="/"
+          <Link
+            to="/"
             className="text-white hover:text-yellow-300 transition-colors duration-200"
           >
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="/services"
+          <Link
+            to="/services"
             className="text-white hover:text-yellow-300 transition-colors duration-200"
           >
             Services
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="/booking"
+          <Link
+            to="/booking"
             className="text-white hover:text-yellow-300 transition-colors duration-200"
           >
             Booking
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="text-white hover:text-yellow-300 transition-colors duration-200"
           >
             Contact
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

@@ -50,7 +50,7 @@ const Home = () => {
 
       {/* Services and Pricing Link */}
       <section className="services-link">
-        <a href="/services">View All Services & Pricing →</a>
+      <Link to="/services">View All Services & Pricing →</Link>
       </section>
 
       {/* Testimonials Section */}
