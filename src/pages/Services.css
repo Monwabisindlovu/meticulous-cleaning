@@ -38,6 +38,8 @@
   justify-content: space-between;
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
 }
 
 .service-card:hover {
@@ -84,6 +86,33 @@
 
 .book-now-btn:hover {
   background-color: #c2185b;
+}
+
+/* 🎯 Full background image for specific service cards (e.g., Window Cleaning) */
+.image-bg-card {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+/* Optional: add a semi-transparent overlay for contrast */
+.image-bg-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* Slightly dark overlay */
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.image-bg-card h3,
+.image-bg-card p,
+.image-bg-card .price,
+.image-bg-card .book-now-btn {
+  position: relative;
+  z-index: 1;
+  color: #fff;
 }
 
 /* 📱 Responsive styles for smaller screens */
