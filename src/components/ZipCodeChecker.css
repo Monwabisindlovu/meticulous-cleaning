@@ -1,0 +1,76 @@
+/* src/components/ZipCodeChecker.css */
+
+/* Container for the ZipCodeChecker component */
+.zip-code-checker-container {
+  background-color: transparent; /* Make background transparent */
+  border: none; /* Remove border */
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: none; /* Remove shadow */
+  text-align: center;
+}
+
+/* Title with location icon */
+.zip-code-checker-container h3 {
+  font-size: 1.25rem;
+  color: #1e3a8a; /* Dark blue color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0; /* Remove margin */
+}
+
+/* Remove background color for input */
+.zip-input {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 8px;
+  width: 50%; /* Smaller width for input */
+  font-size: 1rem;
+  margin-right: 1rem;
+  background-color: transparent; /* Remove background */
+}
+
+/* Remove background color for the Check button */
+.check-btn {
+  background-color: transparent; /* Make background transparent */
+  color: #4CAF50; /* Green text color */
+  border: 1px solid #4CAF50; /* Border matching the text color */
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.check-btn:hover {
+  background-color: #4CAF50; /* Green background on hover */
+  color: white; /* White text on hover */
+}
+
+/* Result text styling */
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.text-green-600 {
+  color: #16a34a; /* Green color for success */
+}
+
+.text-red-600 {
+  color: #dc2626; /* Red color for error */
+}
+
+/* Retry icon styling */
+.retry-icon {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  color: #ff9800; /* Orange color */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.retry-icon:hover {
+  color: #f57c00; /* Darker orange on hover */
+}

@@ -1,0 +1,98 @@
+/* Hero Section - Ensures the whole image is displayed without zoom or cropping */
+.hero {
+  background-image: url('../assets/cleaning-hero.jpg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f0f0f0;
+  padding: 100px 20px;
+  color: white;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+/* ✅ Hero Text Box - no background, transparent */
+.hero-text-box {
+  padding: 20px 30px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: none;           /* Remove shadow */
+  background-color: transparent; /* Remove background */
+}
+
+.hero-text-box h1 {
+  margin: 0;
+  color: #0284c7;
+  font-size: 3rem;
+}
+
+.hero-text-box p {
+  margin: 10px 0;
+  color: #8B4513;
+  font-size: 1.5rem;
+}
+
+/* Buttons in Hero Section */
+.hero-text-box button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #0284c7;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.hero-text-box button:hover {
+  background-color: #0369a1;
+}
+
+/* Remove space between hero and next section */
+.service-showcase,
+.zip-code-checker,
+.cta {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Zip Code Checker */
+.zip-code-checker {
+  margin-top: 0;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Call-to-Action Section */
+.cta {
+  background-color: rgb(248, 245, 230);
+  padding: 40px;
+  text-align: center;
+}
+
+/* ✅ Media Queries */
+@media (max-width: 768px) {
+  .hero {
+    padding: 50px 20px;
+    height: auto;
+    padding-bottom: 20px;
+  }
+
+  .hero-text-box h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text-box p {
+    font-size: 1.2rem;
+  }
+
+  .hero-text-box button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}

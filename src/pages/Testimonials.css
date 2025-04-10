@@ -1,0 +1,79 @@
+/* src/pages/Testimonials.css */
+
+.testimonials-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9fafb;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-list {
+  margin-bottom: 2rem;
+}
+
+.testimonial-card {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card h3 {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.testimonial-card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.stars {
+  font-size: 1.2rem;
+  color: #f59e0b; /* Gold color for stars */
+}
+
+.testimonial-form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-form input,
+.testimonial-form textarea,
+.testimonial-form select {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.testimonial-form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.testimonial-form button:hover {
+  background-color: #45a049;
+}
+
+.view-all-reviews {
+  color: #4CAF50;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.view-all-reviews:hover {
+  text-decoration: underline;
+}

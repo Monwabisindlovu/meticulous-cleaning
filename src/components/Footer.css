@@ -1,0 +1,69 @@
+/* Footer Container */
+footer {
+  background-color: rgb(242, 214, 197);
+  color: #e5e7eb; /* Tailwind text-gray-200 */
+  padding: 1rem 1rem; /* Reduced padding */
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Flex container for layout */
+footer .flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem; /* Reduced gap */
+}
+
+/* Social Icons */
+.footer-socials {
+  display: flex;
+  gap: 1rem; /* Reduced gap */
+  justify-content: center;
+}
+
+.footer-socials a {
+  color: #ffffff;
+  transition: color 0.3s ease;
+  font-size: 1.25rem; /* Reduced font size */
+}
+
+.footer-socials a:hover {
+  color: #fbbf24; /* Tailwind yellow-300 */
+}
+
+/* Navigation Links */
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 1rem; /* Reduced margin-top */
+}
+
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Back to top */
+footer a[href="#top"] {
+  color: #fbbf24;
+  font-size: 0.75rem; /* Reduced font size */
+  transition: text-decoration 0.3s ease;
+}
+
+footer a[href="#top"]:hover {
+  text-decoration: underline;
+}
+
+/* Text alignment for developer credit and copyright */
+footer p {
+  text-align: center;
+  font-size: 0.75rem; /* Reduced font size */
+  margin-top: 0.75rem; /* Reduced margin-top */
+}

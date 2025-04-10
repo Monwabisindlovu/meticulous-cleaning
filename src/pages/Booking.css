@@ -1,0 +1,70 @@
+/* Booking page layout */
+.booking-page {
+  padding: 2rem;
+  max-width: 700px;
+  margin: auto;
+  background-color:rgb(249, 248, 230); /* faded black/gray */
+  color:rgb(17, 130, 186);
+  border-radius: 8px;
+}
+
+/* Heading */
+.booking-page h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color:rgb(121, 55, 15); /* soft pink/brown */
+}
+
+/* Booking form layout */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.booking-form label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: rgb(53, 25, 7); /* soft color */
+}
+
+/* Small input and select */
+.booking-form input,
+.booking-form select {
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background-color:rgb(244, 248, 254);
+}
+
+/* Horizontal layout for dates and time */
+.inline-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.inline-row > div {
+  flex: 1;
+  min-width: 48%;
+}
+
+.booking-form button {
+  padding: 0.9rem;
+  font-size: 1rem;
+  background-color:rgb(22, 157, 172);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Feedback for booked slot */
+.slot-booked {
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
