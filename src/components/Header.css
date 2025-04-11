@@ -68,7 +68,7 @@ header nav ul li a:hover {
 /* Responsive font sizing only */
 @media (max-width: 768px) {
   header h1 {
-    font-size: 2rem; /* Reduced just a bit from 2.5rem */
+    font-size: 1.5rem;
   }
 
   header nav ul li a {
