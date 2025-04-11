@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import { FaWhatsapp, FaEnvelope, FaPhone } from 'react-icons/fa';
 
 import heroImage from '../assets/cleaning-hero.jpg';
-import beforeImage from '../assets/before1.jpg';
-import afterImage from '../assets/after1.jpg';
-
 import './Home.css';
+
 import ZipCodeChecker from '@/components/ZipCodeChecker';
+import OurWorkPreview from '@/components/OurWorkPreview';
 
 const Home = () => {
   return (
@@ -34,23 +33,17 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ✅ Move Zip Code Checker Up Here */}
+      {/* Zip Code Checker */}
       <section className="zip-code-checker">
         <ZipCodeChecker />
       </section>
 
-      {/* Service Showcase */}
-      <section className="service-showcase">
-        <h2>Our Work</h2>
-        <div className="before-after">
-          <img src={beforeImage} alt="Before Cleaning" />
-          <img src={afterImage} alt="After Cleaning" />
-        </div>
-      </section>
+      {/* Our Work Preview */}
+      <OurWorkPreview />
 
       {/* Services and Pricing Link */}
       <section className="services-link">
-      <Link to="/services">View All Services & Pricing →</Link>
+        <Link to="/services">View All Services & Pricing →</Link>
       </section>
 
       {/* Testimonials Section */}

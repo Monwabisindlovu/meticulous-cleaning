@@ -15,13 +15,13 @@
   margin-bottom: 0;
 }
 
-/* ✅ Hero Text Box - no background, transparent */
+/* Hero Text Box - no background, transparent */
 .hero-text-box {
   padding: 20px 30px;
   border-radius: 12px;
   display: inline-block;
-  box-shadow: none;           /* Remove shadow */
-  background-color: transparent; /* Remove background */
+  box-shadow: none;
+  background-color: transparent;
 }
 
 .hero-text-box h1 {
@@ -52,14 +52,6 @@
   background-color: #0369a1;
 }
 
-/* Remove space between hero and next section */
-.service-showcase,
-.zip-code-checker,
-.cta {
-  margin-top: 0;
-  padding-top: 0;
-}
-
 /* Zip Code Checker */
 .zip-code-checker {
   margin-top: 0;
@@ -75,7 +67,96 @@
   text-align: center;
 }
 
-/* ✅ Media Queries */
+/* Our Work Section */
+.service-showcase {
+  padding: 2rem;
+  text-align: center;
+  background-color: #fdfdfd;
+}
+
+.service-showcase h2 {
+  color: #0284c7;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Image layout and hover effect */
+.before-after {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.before-after div {
+  text-align: center;
+}
+
+.before-after img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.before-after img:hover {
+  transform: scale(1.03);
+}
+
+.before-after p {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Services Link Section */
+.services-link {
+  padding: 1rem;
+  text-align: center;
+}
+
+.services-link a {
+  color: #0284c7;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.services-link a:hover {
+  text-decoration: underline;
+}
+
+/* Testimonials */
+.testimonials {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f8f8f8;
+}
+
+.view-all-reviews {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #0284c7;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view-all-reviews:hover {
+  text-decoration: underline;
+}
+
+/* Remove space between hero and next sections */
+.service-showcase,
+.zip-code-checker,
+.cta {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Media Queries */
 @media (max-width: 768px) {
   .hero {
     padding: 50px 20px;
@@ -94,5 +175,16 @@
   .hero-text-box button {
     font-size: 0.9rem;
     padding: 8px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .before-after {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .before-after img {
+    max-width: 90%;
   }
 }
