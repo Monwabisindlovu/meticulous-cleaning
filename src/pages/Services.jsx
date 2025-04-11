@@ -13,12 +13,6 @@ import pestControlImg from '../assets/pest-control.pjg.jpg';
 import officeCleaningImg from '../assets/office-cleaning.jpg';
 import deepCleaningImg from '../assets/deep-cleaning.jpg.jpg';
 
-// Icons (used as fallback or for services without images)
-import {
-  FaCogs, FaTruck, FaTrash, FaBug,
-  FaBuilding, FaHeart, FaBroom, FaRegDotCircle
-} from "react-icons/fa";
-
 const services = [
   {
     name: "Window Cleaning",
@@ -98,25 +92,15 @@ const Services = () => {
           <div
             key={index}
             className={`service-card ${service.imageBackground ? 'image-bg-card' : ''}`}
-            style={
-              service.imageBackground
-                ? { backgroundImage: `url(${service.backgroundImage})` }
-                : {}
-            }
+            style={service.imageBackground ? { backgroundImage: `url(${service.backgroundImage})` } : {}}
           >
-            {!service.imageBackground && (
-              <div className="service-icon">{service.icon}</div>
-            )}
-
             <h3>{service.name}</h3>
             <p>{service.description}</p>
             <p className="price">{service.price}</p>
-            <div>
+            <div className="service-buttons">
               <button
                 className="book-now-btn"
-                onClick={() =>
-                  setQuoteModal({ open: true, service: service.name, basePrice: 240 })
-                }
+                onClick={() => setQuoteModal({ open: true, service: service.name, basePrice: 240 })}
               >
                 Get a Quote
               </button>
