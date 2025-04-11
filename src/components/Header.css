@@ -7,10 +7,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  overflow-x: hidden; /* Prevent horizontal scroll */
-  max-width: 100vw;
-  box-sizing: border-box;
+  flex-wrap: wrap; /* Allows wrapping without stacking vertically */
 }
 
 /* Container for logo and company name */
@@ -18,8 +15,6 @@ header .logo-container {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-shrink: 1;
-  min-width: 0; /* Allows text shrinkage */
 }
 
 /* Logo styling */
@@ -28,7 +23,6 @@ header img {
   width: 5rem;
   border-radius: 50%;
   transition: transform 0.3s ease;
-  flex-shrink: 0;
 }
 
 header img:hover {
@@ -41,9 +35,7 @@ header h1 {
   font-weight: bold;
   color: #0ea5e9;
   transition: color 0.3s ease;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap; /* Prevent wrapping */
 }
 
 header h1:hover {
@@ -57,7 +49,7 @@ header nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Optional */
 }
 
 header nav ul li a {
@@ -73,43 +65,27 @@ header nav ul li a:hover {
   color: #1e3a8a;
 }
 
-/* Responsive tweaks */
+/* Responsive font sizing only */
 @media (max-width: 768px) {
-  header {
-    padding: 0.5rem 1rem;
-    flex-direction: row;
-    align-items: center;
-    overflow-x: hidden;
-  }
-
-  header .logo-container {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
-    flex-shrink: 1;
-    min-width: 0;
-  }
-
   header h1 {
-    font-size: 1.2rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  header nav ul {
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    font-size: 2rem; /* Reduced just a bit from 2.5rem */
   }
 
   header nav ul li a {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     padding: 0.3rem;
   }
 
   header img {
-    height: 3rem;
-    width: 3rem;
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+  header {
+    padding: 0.5rem 1rem;
+  }
+
+  header .logo-container {
+    gap: 0.5rem;
   }
 }
