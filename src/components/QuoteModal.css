@@ -1,0 +1,72 @@
+.quote-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.quote-content {
+  background: #fff;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Updated input styling using input-group */
+.quote-content .input-group {
+  text-align: left;
+  margin: 1rem 0;
+}
+
+.quote-content .input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.quote-content select,
+.quote-content input[type="email"],
+.quote-content textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.quote-content textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+.quote-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.quote-buttons button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #e91e63;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.quote-buttons button:hover {
+  background: #c2185b;
+}
