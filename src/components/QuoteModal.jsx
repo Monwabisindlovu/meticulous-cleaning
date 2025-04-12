@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Use this instead of useHistory
 import "./QuoteModal.css";
+
 
 const pricingData = {
   onceOff: {
@@ -39,6 +41,8 @@ const pricingData = {
 };
 
 const QuoteModal = ({ service, onClose }) => {
+  const navigate = useNavigate(); // ✅ Use navigate instead of history
+
   const [frequency, setFrequency] = useState("onceOff");
   const [cleaningType, setCleaningType] = useState("basic");
   const [bedrooms, setBedrooms] = useState("1 Bedroom");
@@ -56,28 +60,17 @@ const QuoteModal = ({ service, onClose }) => {
     setTotal(price);
   }, [frequency, cleaningType, bedrooms]);
 
-  const handleEmail = () => {
-    alert(`Quote sent to ${email}`);
-  };
-
-  const handleWhatsApp = () => {
-    const message = encodeURIComponent(
-      `New quote request:\n\nService: ${service}\nFrequency: ${frequency}\nCleaning Type: ${cleaningType}\nBedrooms: ${bedrooms}\nTotal: R${total}\nCustomer Email: ${email}\nNotes: ${notes}`
-    );
-    const whatsappURL = `https://wa.me/<YOUR_NUMBER>?text=${message}`;
-    window.open(whatsappURL, "_blank");
-  };
-
-  const handleSave = () => {
-    const quoteData = { service, frequency, cleaningType, bedrooms, total, email, notes };
+  const handleContinueToBooking = () => {
+    const quoteData = { service, frequency, cleaningType, bedrooms, total, notes };
     localStorage.setItem("quoteInfo", JSON.stringify(quoteData));
-    alert("Quote saved!");
+    navigate("/booking"); // ✅ Navigates to Booking page
   };
 
   return (
     <div className="quote-modal">
       <div className="quote-content">
         <h2>{service}</h2>
+
         <div className="input-group">
           <label>Frequency</label>
           <select value={frequency} onChange={(e) => setFrequency(e.target.value)}>
@@ -130,9 +123,7 @@ const QuoteModal = ({ service, onClose }) => {
         <h3>Total: R{total}</h3>
 
         <div className="quote-buttons">
-          <button onClick={handleEmail}>📧 Email Me</button>
-          <button onClick={handleWhatsApp}>📱 WhatsApp Provider</button>
-          <button onClick={handleSave}>💾 Save Quote</button>
+          <button onClick={handleContinueToBooking}>📋 Continue to Booking</button>
           <button onClick={onClose}>❌ Close</button>
         </div>
       </div>

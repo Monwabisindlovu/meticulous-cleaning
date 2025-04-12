@@ -156,35 +156,125 @@
   padding-top: 0;
 }
 
-/* Media Queries */
+/* ============================== */
+/* Footer Section - Add to Bottom */
+/* ============================== */
+.footer-section-on-home {
+  background-color: transparent;
+  color: #f2f2f2;
+  padding: 40px 20px;
+  font-size: 1rem;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column {
+  flex: 1 1 300px;
+  min-width: 200px;
+}
+
+.footer-column h4 {
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  color: #ff69b4;
+}
+
+.footer-column a,
+.footer-column p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  color: #444;
+  text-decoration: none;
+  font-size: 0.95em;
+  transition: color 0.2s ease;
+  background: none !important;
+}
+
+.footer-column a:hover,
+.footer-column p:hover {
+  color: #0284c7;
+}
+
+/* Social Icons Row (optional) */
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  color: inherit;
+}
+
+.social-icons a:hover {
+  color: #0284c7;
+}
+
+/* =============== */
+/* Responsive View */
+/* =============== */
 @media (max-width: 768px) {
-  .hero {
-    padding: 50px 20px;
-    height: auto;
-    padding-bottom: 20px;
+  .footer-grid {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    text-align: left;
+    gap: 10px;
+    flex-wrap: nowrap;
   }
 
-  .hero-text-box h1 {
-    font-size: 2rem;
+  .footer-column {
+    flex: 1 1 33%;
+    min-width: auto;
   }
 
-  .hero-text-box p {
-    font-size: 1.2rem;
+  .footer-section-on-home {
+    font-size: 0.85rem;
+    padding: 30px 15px;
   }
 
-  .hero-text-box button {
-    font-size: 0.9rem;
-    padding: 8px 16px;
+  .footer-column h4 {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+
+  .footer-column a,
+  .footer-column p {
+    font-size: 0.85em;
+    line-height: 1.4;
+  }
+
+  .social-icons {
+    justify-content: flex-start;
   }
 }
 
-@media (max-width: 640px) {
-  .before-after {
-    flex-direction: column;
-    align-items: center;
+@media (max-width: 500px) {
+  .footer-section-on-home {
+    font-size: 0.8rem;
   }
 
-  .before-after img {
-    max-width: 90%;
+  .footer-column h4 {
+    font-size: 0.95em;
+  }
+
+  .footer-grid {
+    flex-wrap: nowrap;
+    gap: 5px;
+  }
+
+  .footer-column {
+    padding: 0 5px;
   }
 }

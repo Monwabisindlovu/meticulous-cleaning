@@ -2,127 +2,143 @@ import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './Booking.css';
+import { db } from "../firebase";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+// import emailjs from 'emailjs-com'; // Uncomment if using EmailJS
 
 const BookingForm = () => {
   const [selectedDates, setSelectedDates] = useState([null, null]);
   const [serviceType, setServiceType] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [streetName, setStreetName] = useState("");
   const [bookedSlots, setBookedSlots] = useState([]);
+  const [quoteDetails, setQuoteDetails] = useState(null);
 
   useEffect(() => {
-    const savedSlots = JSON.parse(localStorage.getItem("bookings")) || [];
-    setBookedSlots(savedSlots);
+    const quote = JSON.parse(localStorage.getItem("quoteInfo"));
+    if (!quote) {
+      alert("Please get a quote first.");
+      window.location.href = "/services";
+    } else {
+      setServiceType(quote.service || "");
+      setQuoteDetails(quote);
+    }
   }, []);
 
-  // Check if any selected date is booked
+  useEffect(() => {
+    const fetchRemoteBookings = async () => {
+      const snapshot = await getDocs(collection(db, "bookings"));
+      const remoteBookings = snapshot.docs.map(doc => doc.data());
+      setBookedSlots(remoteBookings);
+    };
+    fetchRemoteBookings();
+  }, []);
+
+  const formatDate = (date) => date.toLocaleDateString("en-GB");
+
   const isAnyDateBooked = () => {
+    const bookedDateSet = new Set(bookedSlots.map((slot) => slot.date));
     return selectedDates.some((date) => {
       if (!date) return false;
       const dateStr = date.toISOString().split("T")[0];
-      return bookedSlots.some((slot) => slot.date === dateStr);
+      return bookedDateSet.has(dateStr);
     });
   };
 
-  // Function to send WhatsApp message
   const sendWhatsAppMessage = () => {
-    // Prepare the booking details
-    const message = `Booking Details:\n
-    Name: ${fullName}\n
-    Service: ${serviceType}\n
-    Dates: ${selectedDates.map((date) => formatDate(date)).join(", ")}\n
-    Phone: ${phone}\n
-    Email: ${email}\n
-    Address: ${address}\n
-    Street Name: ${streetName}`;
+    const message = `📋 *Booking Details - Meticulous Cleaning Services*
+👤 Name: ${fullName}
+📞 Phone: ${phone}
+🏠 Address: ${address}, ${streetName}
+🧼 Service: ${serviceType}
+🛏️ Bedrooms: ${quoteDetails?.bedrooms}
+✨ Type: ${quoteDetails?.cleaningType}
+🔁 Frequency: ${quoteDetails?.frequency}
+💵 Total: R${quoteDetails?.total}
+📅 Dates: ${selectedDates.map((d) => formatDate(d)).join(", ")}
 
-    // URL encode the message
-    const encodedMessage = encodeURIComponent(message);
+📍 View Location: https://www.google.com/maps?q=${encodeURIComponent(address + " " + streetName)}
 
-    // WhatsApp phone number in international format without the plus sign
+Want your own quote? 👉 https://your-website.com/services
+`;
+
+    const encoded = encodeURIComponent(message);
     const phoneNumber = '27849621939';
-
-    // Create the WhatsApp URL
-    const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-    // Open the WhatsApp link in a new tab
-    window.open(url, "_blank");
+    window.open(`https://wa.me/${phoneNumber}?text=${encoded}`, "_blank");
   };
 
-  // Handle booking submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if at least one date is selected
     if (!selectedDates[0]) {
       alert("Please select at least one date.");
       return;
     }
 
-    // Check if any selected date is already booked
-    const bookedDates = bookedSlots.map((slot) => slot.date);
+    const bookedDateSet = new Set(bookedSlots.map((slot) => slot.date));
     const conflictingDates = selectedDates.filter((date) => {
       if (!date) return false;
-      const dateStr = date.toISOString().split("T")[0]; // Convert to string format (YYYY-MM-DD)
-      return bookedDates.includes(dateStr);
+      const dateStr = date.toISOString().split("T")[0];
+      return bookedDateSet.has(dateStr);
     });
 
     if (conflictingDates.length > 0) {
-      alert(`⚠️ The following date(s) are already booked: ${conflictingDates.map(date => formatDate(date)).join(", ")}`);
-      // Clear date input on failure
+      alert(`❌ The date(s) ${conflictingDates.map(d => formatDate(d)).join(", ")} are already booked. Please choose another.`);
       setSelectedDates([null, null]);
       return;
     }
 
-    // Create new bookings for the selected dates
     const newBookings = selectedDates.map((date) => {
-      if (!date) return null; // Ignore null dates
+      if (!date) return null;
       return {
         date: date.toISOString().split("T")[0],
         service: serviceType,
         name: fullName,
         phone,
-        email,
         address,
         streetName,
+        ...quoteDetails,
       };
-    }).filter(Boolean); // Remove null entries
+    }).filter(Boolean);
 
-    const updatedBookings = [...bookedSlots, ...newBookings];
-    localStorage.setItem("bookings", JSON.stringify(updatedBookings));
-    setBookedSlots(updatedBookings);
+    for (const booking of newBookings) {
+      await addDoc(collection(db, "bookings"), booking);
+    }
 
     alert("✅ Booking submitted successfully!");
-
-    // Send WhatsApp message
     sendWhatsAppMessage();
 
-    // Clear input fields on successful submission
     setSelectedDates([null, null]);
-    setServiceType("");
     setFullName("");
     setPhone("");
-    setEmail("");
     setAddress("");
     setStreetName("");
+    localStorage.removeItem("quoteInfo");
   };
 
-  // Exclude Saturdays
-  const excludeSaturdays = (date) => {
-    return date.getDay() !== 6;
-  };
-
-  // Format date to dd/mm/yyyy
-  const formatDate = (date) => {
-    return date.toLocaleDateString("en-GB"); // Format to dd/mm/yyyy
-  };
+  const excludeSaturdays = (date) => date.getDay() !== 6;
 
   return (
     <div className="booking-page">
       <h1>Book Our Service</h1>
+      {quoteDetails && (
+        <div className="quote-summary">
+          <p><strong>Service:</strong> {quoteDetails.service}</p>
+          <p><strong>Bedrooms:</strong> {quoteDetails.bedrooms}</p>
+          <p><strong>Frequency:</strong> {quoteDetails.frequency}</p>
+          <p><strong>Type:</strong> {quoteDetails.cleaningType}</p>
+          <p><strong>Total:</strong> R{quoteDetails.total}</p>
+          <button className="clear-quote-btn" onClick={() => {
+            localStorage.removeItem("quoteInfo");
+            window.location.reload();
+          }}>
+            🧮 Change Quote Details
+          </button>
+        </div>
+      )}
+
       <form onSubmit={handleSubmit} className="booking-form">
         {/* Dates */}
         <div className="inline-row">
@@ -131,34 +147,18 @@ const BookingForm = () => {
             <DatePicker
               selected={selectedDates[0]}
               onChange={(dates) => setSelectedDates(dates)}
-              dateFormat="dd/MM/yyyy"  // Ensure this format for DatePicker
-              minDate={new Date()}
-              placeholderText="Select one or more dates"
               selectsRange
               startDate={selectedDates[0]}
               endDate={selectedDates[1]}
+              dateFormat="dd/MM/yyyy"
+              minDate={new Date()}
+              placeholderText="Select one or more dates"
               filterDate={excludeSaturdays}
             />
             {isAnyDateBooked() && (
               <div className="slot-booked">⚠️ One or more selected dates are already booked!</div>
             )}
           </div>
-        </div>
-
-        {/* Service Type */}
-        <div>
-          <label>Service Type:</label>
-          <select
-            value={serviceType}
-            onChange={(e) => setServiceType(e.target.value)}
-            required
-          >
-            <option value="">Select a service</option>
-            <option value="window">Window Cleaning</option>
-            <option value="floor">Floor Cleaning</option>
-            <option value="carpet">Carpet Cleaning</option>
-            <option value="move">Moving Services</option>
-          </select>
         </div>
 
         {/* Full Name */}
@@ -183,17 +183,6 @@ const BookingForm = () => {
           />
         </div>
 
-        {/* Email */}
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-
         {/* Address */}
         <div>
           <label>Physical Address:</label>
@@ -214,20 +203,21 @@ const BookingForm = () => {
             onChange={(e) => setStreetName(e.target.value)}
             required
           />
-          {streetName && (
-            <p>
-              <a
-                href={`https://www.google.com/maps?q=${encodeURIComponent(streetName)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View on Google Maps
-              </a>
-            </p>
-          )}
         </div>
 
-        {/* Submit */}
+        {/* Google Maps Link */}
+        {address && streetName && (
+          <p>
+            <a
+              href={`https://www.google.com/maps?q=${encodeURIComponent(address + " " + streetName)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              📍 View on Google Maps
+            </a>
+          </p>
+        )}
+
         <button type="submit">Submit Booking</button>
       </form>
     </div>
@@ -235,3 +225,4 @@ const BookingForm = () => {
 };
 
 export default BookingForm;
+
