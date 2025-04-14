@@ -1,12 +1,17 @@
 /* src/components/ZipCodeChecker.css */
 
+/* Outer wrapper to reduce top spacing */
+.zip-code-checker-page {
+  padding-top: 2rem; /* Reduced top padding (was likely higher) */
+}
+
 /* Container for the ZipCodeChecker component */
 .zip-code-checker-container {
   background-color: rgb(249, 246, 243);
   border: none; /* Remove border */
   padding: 1.5rem;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 1rem auto 0 auto; /* Reduced top margin */
   box-shadow: none; /* Remove shadow */
   text-align: center;
 }
