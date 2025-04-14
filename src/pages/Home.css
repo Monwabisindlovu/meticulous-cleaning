@@ -4,7 +4,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #f0f0f0;
+  background-color: rgb(249, 246, 243);
   padding: 100px 20px;
   color: white;
   text-align: center;
@@ -57,45 +57,55 @@
   margin-top: 0;
   padding: 20px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 /* Call-to-Action Section */
 .cta {
-  background-color: rgb(248, 245, 230);
+  background-color: rgb(249, 246, 243);;
   padding: 40px;
   text-align: center;
 }
 
 /* Our Work Section */
-.service-showcase {
-  padding: 2rem;
+.our-work-gallery {
+  padding: 40px 20px;
   text-align: center;
-  background-color: #fdfdfd;
+  background-color: rgb(249, 246, 243);
+  margin-bottom: 20px;
 }
 
-.service-showcase h2 {
+.our-work-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.our-work-gallery h2 {
   color: #0284c7;
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-/* Image layout and hover effect */
-.before-after {
+.our-work-gallery p {
+  font-size: 1rem;
+  margin-bottom: 1.1rem;
+  color: #444;
+}
+
+.gallery-preview {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  justify-content: center;
+  gap: 20px;
 }
 
-.before-after div {
+.gallery-item {
+  max-width: 300px;
   text-align: center;
 }
 
-.before-after img {
+.preview-img {
   width: 100%;
-  max-width: 300px;
   height: auto;
   border-radius: 8px;
   cursor: pointer;
@@ -103,20 +113,42 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.before-after img:hover {
+.preview-img:hover {
   transform: scale(1.03);
 }
 
-.before-after p {
-  margin-top: 0.5rem;
-  font-weight: 600;
+.image-label {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #0284c7;
+}
+
+.client-story {
+  font-size: 0.9rem;
   color: #555;
+  margin-top: 5px;
+}
+
+.view-more-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0284c7;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.view-more-btn:hover {
+  background-color: #e0559d;
 }
 
 /* Services Link Section */
 .services-link {
   padding: 1rem;
   text-align: center;
+  background-color: rgb(249, 246, 243);
 }
 
 .services-link a {
@@ -217,7 +249,7 @@
   color: inherit;
 }
 
-.social-icons a:hover {
+.social-icons a: {
   color: #0284c7;
 }
 

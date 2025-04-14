@@ -4,10 +4,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import './Booking.css';
 import { db } from "../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
-// import emailjs from 'emailjs-com'; // Uncomment if using EmailJS
+import emailjs from 'emailjs-com';
 
 const BookingForm = () => {
-  const [selectedDates, setSelectedDates] = useState([null, null]);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [serviceType, setServiceType] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
@@ -36,81 +36,92 @@ const BookingForm = () => {
     fetchRemoteBookings();
   }, []);
 
-  const formatDate = (date) => date.toLocaleDateString("en-GB");
+  const formatDate = (date) => date ? date.toLocaleDateString("en-GB") : "N/A";
 
-  const isAnyDateBooked = () => {
-    const bookedDateSet = new Set(bookedSlots.map((slot) => slot.date));
-    return selectedDates.some((date) => {
-      if (!date) return false;
-      const dateStr = date.toISOString().split("T")[0];
-      return bookedDateSet.has(dateStr);
-    });
+  const isDateBooked = () => {
+    if (!selectedDate) return false;
+    const dateStr = selectedDate.toISOString().split("T")[0];
+    return bookedSlots.some((slot) => slot.date === dateStr);
   };
 
   const sendWhatsAppMessage = () => {
-    const message = `📋 *Booking Details - Meticulous Cleaning Services*
+    console.log("Preparing WhatsApp message...");
+
+    const message = `
+📋 *Booking Details - Meticulous Cleaning Services*
 👤 Name: ${fullName}
 📞 Phone: ${phone}
 🏠 Address: ${address}, ${streetName}
 🧼 Service: ${serviceType}
-🛏️ Bedrooms: ${quoteDetails?.bedrooms}
-✨ Type: ${quoteDetails?.cleaningType}
-🔁 Frequency: ${quoteDetails?.frequency}
-💵 Total: R${quoteDetails?.total}
-📅 Dates: ${selectedDates.map((d) => formatDate(d)).join(", ")}
-
-📍 View Location: https://www.google.com/maps?q=${encodeURIComponent(address + " " + streetName)}
+🛏️ Bedrooms: ${quoteDetails?.bedrooms || "N/A"}
+✨ Type: ${quoteDetails?.cleaningType || "N/A"}
+🔁 Frequency: ${quoteDetails?.frequency || "N/A"}
+💵 Total: R${quoteDetails?.total || "N/A"}
+📅 Date: ${formatDate(selectedDate)}
 
 Want your own quote? 👉 https://your-website.com/services
-`;
+    `;
 
-    const encoded = encodeURIComponent(message);
-    const phoneNumber = '27849621939';
-    window.open(`https://wa.me/${phoneNumber}?text=${encoded}`, "_blank");
+    const phoneNumber = process.env.REACT_APP_WHATSAPP_NUMBER?.replace(/\s+/g, "");
+    if (!phoneNumber) {
+      console.error("WhatsApp number is not defined in environment variables.");
+      return;
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!selectedDates[0]) {
-      alert("Please select at least one date.");
+    if (!selectedDate) {
+      alert("Please select a date.");
       return;
     }
 
-    const bookedDateSet = new Set(bookedSlots.map((slot) => slot.date));
-    const conflictingDates = selectedDates.filter((date) => {
-      if (!date) return false;
-      const dateStr = date.toISOString().split("T")[0];
-      return bookedDateSet.has(dateStr);
-    });
+    const dateStr = selectedDate.toISOString().split("T")[0];
+    const isBooked = bookedSlots.some((slot) => slot.date === dateStr);
 
-    if (conflictingDates.length > 0) {
-      alert(`❌ The date(s) ${conflictingDates.map(d => formatDate(d)).join(", ")} are already booked. Please choose another.`);
-      setSelectedDates([null, null]);
+    if (isBooked) {
+      alert(`❌ The selected date (${formatDate(selectedDate)}) is already booked. Please choose another.`);
+      setSelectedDate(null);
       return;
     }
 
-    const newBookings = selectedDates.map((date) => {
-      if (!date) return null;
-      return {
-        date: date.toISOString().split("T")[0],
-        service: serviceType,
-        name: fullName,
-        phone,
-        address,
-        streetName,
-        ...quoteDetails,
-      };
-    }).filter(Boolean);
+    const bookingData = {
+      date: dateStr,
+      service: serviceType,
+      name: fullName,
+      phone,
+      address,
+      streetName,
+      ...quoteDetails,
+    };
 
-    for (const booking of newBookings) {
-      await addDoc(collection(db, "bookings"), booking);
-    }
+    await addDoc(collection(db, "bookings"), bookingData);
 
     alert("✅ Booking submitted successfully!");
     sendWhatsAppMessage();
 
-    setSelectedDates([null, null]);
+    // Send confirmation email
+    const templateParams = {
+      name: fullName,
+      phone,
+      address,
+      streetName,
+      service: serviceType,
+      bedrooms: quoteDetails?.bedrooms,
+      cleaningType: quoteDetails?.cleaningType,
+      frequency: quoteDetails?.frequency,
+      total: quoteDetails?.total,
+      dates: formatDate(selectedDate),
+    };
+
+    emailjs
+      .send('service_9bs0gqm', 'template_uqgy8xb', templateParams, 'RKHNC_ItJf0swYQt')
+      .then((result) => console.log('Email sent successfully:', result.text))
+      .catch((error) => console.error('Email send error:', error.text));
+
+    // Clear form
+    setSelectedDate(null);
     setFullName("");
     setPhone("");
     setAddress("");
@@ -123,6 +134,7 @@ Want your own quote? 👉 https://your-website.com/services
   return (
     <div className="booking-page">
       <h1>Book Our Service</h1>
+
       {quoteDetails && (
         <div className="quote-summary">
           <p><strong>Service:</strong> {quoteDetails.service}</p>
@@ -130,33 +142,33 @@ Want your own quote? 👉 https://your-website.com/services
           <p><strong>Frequency:</strong> {quoteDetails.frequency}</p>
           <p><strong>Type:</strong> {quoteDetails.cleaningType}</p>
           <p><strong>Total:</strong> R{quoteDetails.total}</p>
-          <button className="clear-quote-btn" onClick={() => {
-            localStorage.removeItem("quoteInfo");
-            window.location.reload();
-          }}>
+          <button
+            className="clear-quote-btn"
+            onClick={() => {
+              localStorage.removeItem("quoteInfo");
+              window.location.reload();
+            }}
+          >
             🧮 Change Quote Details
           </button>
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="booking-form">
-        {/* Dates */}
+        {/* Date */}
         <div className="inline-row">
           <div>
-            <label>Select Dates:</label>
+            <label>Select Date:</label>
             <DatePicker
-              selected={selectedDates[0]}
-              onChange={(dates) => setSelectedDates(dates)}
-              selectsRange
-              startDate={selectedDates[0]}
-              endDate={selectedDates[1]}
-              dateFormat="dd/MM/yyyy"
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
               minDate={new Date()}
-              placeholderText="Select one or more dates"
               filterDate={excludeSaturdays}
+              dateFormat="dd/MM/yyyy"
+              placeholderText="Choose a date"
             />
-            {isAnyDateBooked() && (
-              <div className="slot-booked">⚠️ One or more selected dates are already booked!</div>
+            {isDateBooked() && (
+              <div className="slot-booked">⚠️ This date is already booked!</div>
             )}
           </div>
         </div>
@@ -225,4 +237,3 @@ Want your own quote? 👉 https://your-website.com/services
 };
 
 export default BookingForm;
-

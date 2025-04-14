@@ -1,13 +1,15 @@
 /* Overall Page Section */
 .our-work-page {
   padding: 2rem;
-  background-color: #fdfdfd;
+  background-color:rgb(241, 206, 129) 253, 253);
   color: #333;
+  box-sizing: border-box;
 }
 
-/* Section Spacing */
+/* Shared Section Spacing */
 .interactive-slider,
 .work-gallery,
+.our-work-gallery,
 .client-story,
 .benefit-boxes,
 .cleaning-gif,
@@ -16,46 +18,75 @@
   margin-bottom: 3rem;
 }
 
-/* Slider Caption */
-.slider-caption {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #777;
-}
-
-/* Service Showcase Preview (Top 3 Images) */
+/* Top Service Showcase Preview */
 .service-showcase {
   padding: 2rem;
   background-color: #f9f9f9;
 }
 
-.before-after {
+/* Preview Section - Top 2-3 Items */
+.our-work-gallery {
+  padding: 2rem;
+  background: #f8f8f8;
+  text-align: center;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* Image Row Wrapper */
+.gallery-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* Individual Image Cards */
+.gallery-item,
 .image-card {
-  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
   text-align: center;
   cursor: pointer;
 }
 
+/* Image Styling */
+.preview-img,
 .image-card img {
   width: 100%;
-  height: 200px;
+  height: auto;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
 }
 
+.preview-img:hover,
+.image-card img:hover {
+  transform: scale(1.02);
+}
+
+/* Image Labels and Stories */
 .image-label {
+  font-size: 1rem;
   font-weight: bold;
   margin-top: 0.5rem;
 }
 
 .client-story {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #666;
   margin-top: 0.25rem;
 }
@@ -63,36 +94,20 @@
 /* View More Button */
 .view-more-btn {
   margin-top: 1.5rem;
-  background-color: #ff66a3;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  background-color: #f35b8a;
   color: white;
   border: none;
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
 .view-more-btn:hover {
-  background-color: #e55588;
+  background-color: #d94c78;
 }
 
-/* ✅ Interactive Slider - Match Image Card Size */
-.interactive-slider {
-  margin-top: 2rem;
-  text-align: center;
-  max-width: 300px; /* Matches .image-card width */
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1rem;
-}
-
-.compare-image-wrapper {
-  width: 100%;
-  height: 200px; /* Matches .image-card img height */
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-/* Gallery Grid Section */
+/* Full Gallery Grid Section */
 .gallery-grid {
   display: grid;
   gap: 1rem;
@@ -105,7 +120,7 @@
   object-fit: cover;
 }
 
-/* Benefits Box */
+/* Benefit Section */
 .benefit-boxes {
   display: flex;
   flex-direction: column;
@@ -149,4 +164,62 @@
 
 .book-now-btn:hover {
   background-color: #e55588;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .gallery-item,
+  .image-card {
+    max-width: 90%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .image-label {
+    font-size: 0.95rem;
+  }
+
+  .client-story {
+    font-size: 0.85rem;
+  }
+
+  .view-more-btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .our-work-gallery {
+    padding: 1rem;
+  }
+
+  .gallery-preview {
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .gallery-item,
+  .image-card {
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .image-label {
+    font-size: 0.9rem;
+  }
+
+  .client-story {
+    font-size: 0.8rem;
+  }
+
+  .preview-img {
+    border-radius: 8px;
+  }
+
+  .view-more-btn {
+    width: 100%;
+    font-size: 1rem;
+  }
 }

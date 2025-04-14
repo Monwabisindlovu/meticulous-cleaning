@@ -1,13 +1,15 @@
 /* Overall Page Section */
 .our-work-page {
   padding: 2rem;
-  background-color: #fdfdfd;
+  background-color: rgb(249, 231, 220);
   color: #333;
+  box-sizing: border-box;
 }
 
-/* Section Spacing */
+/* Shared Section Spacing */
 .interactive-slider,
 .work-gallery,
+.our-work-gallery,
 .client-story,
 .benefit-boxes,
 .cleaning-gif,
@@ -16,107 +18,102 @@
   margin-bottom: 3rem;
 }
 
-/* Slider Caption */
-.slider-caption {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #777;
-}
-
-/* Service Showcase Preview (Top 3 Images) */
+/* Top Service Showcase Preview */
 .service-showcase {
   padding: 2rem;
   background-color: #f9f9f9;
 }
 
-.before-after {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+/* Preview Section - Top 2-3 Items */
+.our-work-gallery {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #fdfdfd;
+  margin-bottom: 20px;
 }
 
-.image-card {
-  width: 300px;
+/* Our Work Wrapper */
+.our-work-wrapper {
+  max-width: 1000px;
+  margin: 0 auto; /* Centrally aligns the container */
+}
+
+/* Header Styling */
+.our-work-gallery h2 {
+  color: #0284c7;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.our-work-gallery p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #444;
+}
+
+/* Image Row Wrapper */
+.gallery-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* ✅ CENTER ROWS */
+  gap: 20px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px; /* Optional cap */
+  box-sizing: border-box;
+}
+
+/* Individual Image Cards */
+.gallery-item {
+  max-width: 300px;
   text-align: center;
+}
+
+/* Image Styling */
+.preview-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
   cursor: pointer;
 }
 
-.image-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
+.preview-img:hover {
+  transform: scale(1.03);
 }
 
+/* Labels and Story */
 .image-label {
+  margin-top: 10px;
   font-weight: bold;
-  margin-top: 0.5rem;
+  color: #0284c7;
 }
 
 .client-story {
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 5px;
 }
 
 /* View More Button */
 .view-more-btn {
-  margin-top: 1.5rem;
-  background-color: #ff66a3;
-  color: white;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff69b4;
   border: none;
-  padding: 0.7rem 1.5rem;
-  border-radius: 5px;
+  color: white;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .view-more-btn:hover {
-  background-color: #e55588;
+  background-color: #e0559d;
 }
 
-/* ✅ Interactive Slider - Proper size match to .image-card */
-.interactive-slider {
-  margin-top: 2rem;
-  text-align: center;
-  width: 100%;
-  max-width: 300px; /* Matches .image-card width */
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1rem;
-}
-
-.compare-image-wrapper {
-  width: 300px; /* Matches the width of .image-card */
-  height: 200px; /* Matches the height of .image-card */
-  border-radius: 8px; /* Ensure consistency with .image-card */
-  overflow: hidden;
-  position: relative;
-  margin: 0 auto; /* Centers the slider */
-}
-
-/* 🔐 Enforce styling inside ReactCompareImage */
-.compare-image-wrapper img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  border-radius: 10px !important;
-}
-
-/* Gallery Grid Section */
-.gallery-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-}
-
-.gallery-grid img {
-  width: 100%;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-/* Benefits Box */
+/* Benefit Section */
 .benefit-boxes {
   display: flex;
   flex-direction: column;
@@ -163,9 +160,56 @@
 }
 
 /* Responsive Adjustments */
-@media screen and (min-width: 768px) {
-  .compare-image-wrapper {
-    max-width: 300px; /* Restricts size on larger screens */
-    height: auto; /* Maintains aspect ratio */
+@media screen and (max-width: 768px) {
+  .gallery-item {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .image-label {
+    font-size: 0.95rem;
+  }
+
+  .client-story {
+    font-size: 0.85rem;
+  }
+
+  .view-more-btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .our-work-gallery {
+    padding: 1rem;
+  }
+
+  .gallery-preview {
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .gallery-item {
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .image-label {
+    font-size: 0.9rem;
+  }
+
+  .client-story {
+    font-size: 0.8rem;
+  }
+
+  .preview-img {
+    border-radius: 8px;
+  }
+
+  .view-more-btn {
+    width: 100%;
+    font-size: 1rem;
   }
 }

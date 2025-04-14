@@ -2,7 +2,7 @@
 
 /* Container for the ZipCodeChecker component */
 .zip-code-checker-container {
-  background-color: transparent; /* Make background transparent */
+  background-color: rgb(249, 246, 243);
   border: none; /* Remove border */
   padding: 1.5rem;
   max-width: 600px;

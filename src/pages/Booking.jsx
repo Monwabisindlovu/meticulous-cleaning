@@ -1,6 +1,6 @@
 // src/pages/Booking.jsx
 import React from "react";
-import BookingForm from "@/components/BookingForm";
+import BookingForm from "@/components/QuoteRequestModal";
 import './Booking.css'; 
 
 const Booking = () => {

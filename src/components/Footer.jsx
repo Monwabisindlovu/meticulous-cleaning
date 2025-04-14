@@ -1,53 +1,55 @@
 import React from 'react';
 import {
-  FaFacebookF,
-  FaLinkedin,
-  FaTwitter,
-  FaYoutube,
-  FaInstagram
+  FaPhoneAlt,
+  FaWhatsapp,
+  FaEnvelope,
+  FaMapMarkerAlt
 } from 'react-icons/fa';
-import { SiTiktok } from 'react-icons/si';
-import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="flex flex-col items-center space-y-6">
-        {/* Social Media Icons */}
-        <div className="footer-socials">
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="facebook">
-            <FaFacebookF size={24} />
-          </a>
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="instagram">
-            <FaInstagram size={24} />
-          </a>
-          <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="tiktok">
-            <SiTiktok size={24} />
-          </a>
-          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="youtube">
-            <FaYoutube size={24} />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="twitter">
-            <FaTwitter size={24} />
-          </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="linkedin">
-            <FaLinkedin size={24} />
-          </a>
-        </div>
+      <div className="flex flex-col items-center space-y-6 text-white">
 
-        {/* Navigation Links */}
-        <div className="footer-links">
-          <Link to="/about">About</Link>
-          <Link to="/privacy-policy">Privacy Policy</Link>
-          <Link to="/terms">Terms & Conditions</Link>
+        {/* Contact Info in a single horizontal row */}
+        <div className="footer-contact-row">
+          <div className="footer-contact-item">
+            <FaPhoneAlt className="phone-icon" />
+            <a href="tel:+27628843771">+27 62 884 3771</a>
+          </div>
+
+          <div className="footer-contact-item">
+            <FaWhatsapp className="whatsapp-icon" />
+            <a href="https://wa.me/27628843771" target="_blank" rel="noopener noreferrer">
+              +27 62 884 3771
+            </a>
+          </div>
+
+          <div className="footer-contact-item">
+            <FaEnvelope className="email-icon" />
+            <a href="mailto:thembietshili@gmail.com">thembietshili@gmail.com</a>
+          </div>
+
+          <div className="footer-contact-item">
+            <FaMapMarkerAlt className="location-icon" />
+            <a
+              href="https://www.google.com/maps?q=23+main+avenue,+Florida+1710"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              23 Main Avenue, Florida 1710
+            </a>
+          </div>
         </div>
 
         {/* Copyright */}
-        <p>&copy; {new Date().getFullYear()} Meticulous Cleaning Services. All rights reserved.</p>
+        <p className="text-sm text-gray-300 text-center">
+          &copy; {new Date().getFullYear()} Meticulous Cleaning Services. All rights reserved.
+        </p>
 
         {/* Developer Credit */}
-        <p>
+        <p className="text-sm text-gray-300 text-center">
           Designed & Developed by{" "}
           <a href="https://github.com/Monwabisindlovu" className="text-yellow-300 hover:underline">
             Monwabisi Ndlovu
@@ -55,7 +57,7 @@ const Footer = () => {
         </p>
 
         {/* Back to Top */}
-        <a href="#top" className="text-sm text-yellow-300 hover:underline mt-4">
+        <a href="#top" className="text-sm text-yellow-300 hover:underline mt-2">
           Back to Top
         </a>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import QuoteModal from "../components/QuoteModal";
+import QuoteModal from "../components/QuoteForm.jsx";
 import "./Services.css";
 
 // Import background images

@@ -5,10 +5,7 @@ import {
   FaEnvelope,
   FaPhone,
   FaFacebookF,
-  FaInstagram,
-  FaTwitter,
   FaLinkedin,
-  FaYoutube,
   FaInfoCircle,
   FaShieldAlt,
   FaFileContract,
@@ -56,6 +53,13 @@ const Home = () => {
 
       {/* Services and Pricing Link */}
       <section className="services-link">
+        <h2>Our Services</h2>
+        <p>
+          From sparkling clean homes to spotless offices, we offer professional cleaning for
+          <strong> residences, schools, offices, and commercial spaces</strong>.
+          Whether you need a once-off deep clean or regular upkeep, we’re here to make every corner shine.
+        </p>
+
         <Link to="/services">View All Services & Pricing →</Link>
       </section>
 
@@ -80,20 +84,16 @@ const Home = () => {
           <div className="footer-column">
             <h4>Follow Us</h4>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /> Facebook</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /> Instagram</a>
             <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"><SiTiktok /> TikTok</a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><FaYoutube /> YouTube</a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /> Twitter</a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedin /> LinkedIn</a>
           </div>
 
-          {/* Contact Info */}
+          {/* Customer Reviews */}
           <div className="footer-column">
-            <h4>Contact Us</h4>
-            <p><FaPhone /> +27 61 234 5678</p>
-            <p><FaEnvelope /> info@meticulouscleaning.co.za</p>
-            <p><FaWhatsapp /> +27 61 234 5678</p>
-            <p><FaWhatsapp /> +27 72 345 6789</p>
+            <h4>Customer Love ❤️</h4>
+            <p>“They transformed our office! Professional, fast, and so thorough.” – Jessica M.</p>
+            <p>“My carpets have never looked this good. 10/10 service.” – Thabo N.</p>
+            <p>“Reliable and kind team. Highly recommend for home cleans.” – Lindiwe K.</p>
           </div>
         </div>
       </section>
