@@ -1,22 +1,15 @@
 // firebase.js
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"; // for Firestore
-import { getAnalytics } from "firebase/analytics"; // optional
+import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAej-dT13byvqxnEV0fWltAu3naEfGyn40",
-  authDomain: "meticulous-bookings.firebaseapp.com",
-  projectId: "meticulous-bookings",
-  storageBucket: "meticulous-bookings.appspot.com",
-  messagingSenderId: "633280551405",
-  appId: "1:633280551405:web:dc6116c6cb54f48bf46fe4",
-  measurementId: "G-6XCELDJTQ5"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app); // for Firestore
-const analytics = getAnalytics(app); // optional
-
-export { db };
+export const db = getFirestore(app);
