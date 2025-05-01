@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://meticulous-cleaning-services.vercel.app/sitemap.xml
+Sitemap: https://meticulous-cleaning-services.vercel.app/.xml
