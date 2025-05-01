@@ -63,7 +63,7 @@
 
 /* Call-to-Action Section */
 .cta {
-  background-color: rgb(249, 246, 243);;
+  background-color: rgb(19, 19, 19);;
   padding: 40px;
   text-align: center;
 }
@@ -72,7 +72,7 @@
 .our-work-gallery {
   padding: 40px 20px;
   text-align: center;
-  background-color: rgb(249, 246, 243);
+  background-color: rgb(255, 246, 246);
   margin-bottom: 20px;
 }
 
