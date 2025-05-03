@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Meticulous Cleaning Services</title>
     <meta name="description" content="Affordable, reliable cleaning services in Gauteng. We specialize in carpet, window, floor cleaning, and more!. Get a quote today.">
     <meta name="keywords" content="cleaning services Gauteng, carpet cleaning, window cleaning, floor cleaning, Meticulous Cleaning Services">
@@ -15,6 +14,70 @@
     <meta property="og:url" content="https://meticulous-cleaning-services.vercel.app">
     <meta property="og:type" content="website">
     <meta property="og:image" content="/assets/cleaning-hero.jpg">
+
+    <!-- Structured Data (Schema) for Service -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Cleaning Services",
+        "provider": {
+          "@type": "Organization",
+          "name": "Meticulous Cleaning Services",
+          "url": "https://meticulous-cleaning-services.vercel.app",
+          "logo": "https://meticulous-cleaning-services.vercel.app/assets/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+27-XXX-XXXX",
+            "contactType": "Customer Service"
+          },
+          "sameAs": [
+            "https://www.facebook.com/MeticulousCleaningServices",
+            "https://twitter.com/MeticulousCleaningServices"
+          ]
+        },
+        "areaServed": "Gauteng, South Africa",
+        "description": "Affordable, reliable cleaning services including carpet cleaning, window cleaning, floor cleaning, and more in Gauteng.",
+        "offers": {
+          "@type": "Offer",
+          "url": "https://meticulous-cleaning-services.vercel.app/services",
+          "priceCurrency": "ZAR",
+          "price": "240.00",
+          "eligibleRegion": "Gauteng"
+        }
+      }
+    </script>
+
+    <!-- Structured Data (Schema) for Review -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Review",
+        "itemReviewed": {
+          "@type": "Service",
+          "name": "Meticulous Cleaning Services",
+          "serviceType": "Cleaning Services",
+          "provider": {
+            "@type": "Organization",
+            "name": "Meticulous Cleaning Services",
+            "url": "https://meticulous-cleaning-services.vercel.app"
+          }
+        },
+        "author": {
+          "@type": "Person",
+          "name": "John Doe"
+        },
+        "datePublished": "2025-05-03",
+        "reviewBody": "Meticulous Cleaning Services did an amazing job on our carpets. Professional and efficient. Highly recommend!",
+        "reviewRating": {
+          "@type": "Rating",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingValue": "5"
+        }
+      }
+    </script>
+
   </head>
   <body>
     <div id="root"></div>
