@@ -5,6 +5,8 @@ import './Booking.css';
 import { db } from "../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import emailjs from 'emailjs-com';
+import { useNavigate } from "react-router-dom"; // React Router v6+ for navigation
+import { ClipLoader } from "react-spinners"; // Loading spinner component
 
 const BookingForm = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -16,17 +18,20 @@ const BookingForm = () => {
   const [streetName, setStreetName] = useState("");
   const [bookedSlots, setBookedSlots] = useState([]);
   const [quoteDetails, setQuoteDetails] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); // For loading state
+  const [bookingStatus, setBookingStatus] = useState(null); // For booking status message
+  const navigate = useNavigate();
 
   useEffect(() => {
     const quote = JSON.parse(localStorage.getItem("quoteInfo"));
     if (!quote) {
       alert("Please get a quote first.");
-      window.location.href = "/services";
+      navigate("/services");
     } else {
       setServiceType(quote.service || "");
       setQuoteDetails(quote);
     }
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const fetchRemoteBookings = async () => {
@@ -58,12 +63,16 @@ const BookingForm = () => {
 📍 Address: ${params.address}, ${params.streetName}
 
 🧹 Service: ${params.serviceType}
+${params.serviceType === "Gardening" ? `
+🔁 Frequency: ${params.frequency}
+📝 Notes: ${params.notes}` : `
 🛏️ Bedrooms: ${params.bedrooms}
 🧽 Cleaning Type: ${params.cleaningType}
 🔁 Frequency: ${params.frequency}
 💰 Total: R${params.total}
+📝 Notes: ${params.notes}`
+}
 📅 Preferred Date: ${params.preferredDate}
-📝 Notes: ${params.notes}
 
 - Meticulous Booking System ✅
 `;
@@ -114,6 +123,8 @@ const BookingForm = () => {
     };
 
     try {
+      setIsSubmitting(true); // Start loading
+
       const docRef = await addDoc(collection(db, "bookings"), bookingData);
       const docId = docRef.id;
 
@@ -132,13 +143,13 @@ const BookingForm = () => {
         client_email: trimmedEmail,
         notes: quoteDetails?.notes || "No notes",
       };
-            
-            await emailjs.send(
-              import.meta.env.VITE_EMAILJS_SERVICE_ID,
-              import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-              providerTemplateParams,
-              import.meta.env.VITE_EMAILJS_USER_ID
-            );
+
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        providerTemplateParams,
+        import.meta.env.VITE_EMAILJS_USER_ID
+      );
 
       const clientTemplateParams = {
         to_email: trimmedEmail,
@@ -155,7 +166,15 @@ const BookingForm = () => {
       );
 
       sendWhatsAppToProvider(providerTemplateParams);
-      alert("✅ Booking submitted successfully! Ref: " + docId);
+      setBookingStatus("success");
+
+      // Show a "Thank You" message
+      setIsSubmitting(false); // Stop loading
+
+      // Set a timer to show the thank you message for 2 seconds, then redirect to homepage
+      setTimeout(() => {
+        navigate("/"); // Redirect to the homepage
+      }, 2000);
 
       // Reset form
       setSelectedDate(null);
@@ -167,6 +186,7 @@ const BookingForm = () => {
       localStorage.removeItem("quoteInfo");
 
     } catch (error) {
+      setIsSubmitting(false); // Stop loading
       console.error("❌ Submission error:", error);
       alert("🚫 Error submitting booking: " + error.message);
     }
@@ -174,79 +194,90 @@ const BookingForm = () => {
 
   return (
     <div className="booking-page">
-      <h1>Book Our Service</h1>
-      {quoteDetails && (
-        <div className="quote-summary">
-          <p><strong>Service:</strong> {quoteDetails.service}</p>
-          <p><strong>Bedrooms:</strong> {quoteDetails.bedrooms}</p>
-          <p><strong>Frequency:</strong> {quoteDetails.frequency}</p>
-          <p><strong>Type:</strong> {quoteDetails.cleaningType}</p>
-          <p><strong>Total:</strong> R{quoteDetails.total}</p>
-          <button
-            className="clear-quote-btn"
-            onClick={() => {
-              localStorage.removeItem("quoteInfo");
-              window.location.reload();
-            }}
-          >
-            🧮 Change Quote Details
-          </button>
+      {bookingStatus === "success" ? (
+        <div className="thank-you-message">
+          <h2>Booking Successful!</h2>
+          <p>Thank you for choosing Meticulous Cleaning Services. We’ll be in touch soon to confirm your booking.</p>
         </div>
-      )}
+      ) : (
+        <form onSubmit={handleSubmit} className="booking-form">
+          {quoteDetails && (
+            <div className="quote-summary">
+              <p><strong>Service:</strong> {quoteDetails.service}</p>
 
-      <form onSubmit={handleSubmit} className="booking-form">
-        <div className="inline-row">
-          <div>
-            <label>Select Date:</label>
-            <DatePicker
-              selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              minDate={new Date()}
-              filterDate={excludeSaturdays}
-              dateFormat="dd/MM/yyyy"
-              placeholderText="Choose a date"
-            />
-            {isDateBooked() && (
-              <div className="slot-booked">⚠️ This date is already booked!</div>
-            )}
+              {quoteDetails.service === "Gardening" ? (
+                <>
+                  <p><strong>Frequency:</strong> {quoteDetails.frequency}</p>
+                  <p><strong>Notes:</strong> {quoteDetails.notes || "No notes provided"}</p>
+                </>
+              ) : (
+                <>
+                  <p><strong>Bedrooms:</strong> {quoteDetails.bedrooms}</p>
+                  <p><strong>Frequency:</strong> {quoteDetails.frequency}</p>
+                  <p><strong>Type:</strong> {quoteDetails.cleaningType}</p>
+                  <p><strong>Total:</strong> R{quoteDetails.total}</p>
+                </>
+              )}
+
+              <button
+                className="clear-quote-btn"
+                onClick={() => {
+                  localStorage.removeItem("quoteInfo");
+                  window.location.reload();
+                }}
+              >
+                🧮 Change Quote Details
+              </button>
+            </div>
+          )}
+
+          <div className="inline-row">
+            <div>
+              <label>Select Date:</label>
+              <DatePicker
+                selected={selectedDate}
+                onChange={(date) => setSelectedDate(date)}
+                minDate={new Date()}
+                filterDate={excludeSaturdays}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Choose a date"
+              />
+              {isDateBooked() && (
+                <div className="slot-booked">⚠️ This date is already booked!</div>
+              )}
+            </div>
           </div>
-        </div>
 
-        <div>
-          <label>Full Name:</label>
-          <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
-        </div>
+          <div>
+            <label>Full Name:</label>
+            <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
+          </div>
 
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
+          <div>
+            <label>Email:</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </div>
 
-        <div>
-          <label>Phone:</label>
-          <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required />
-        </div>
+          <div>
+            <label>Phone:</label>
+            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+          </div>
 
-        <div>
-          <label>Physical Address:</label>
-          <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required />
-        </div>
+          <div>
+            <label>Physical Address:</label>
+            <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required />
+          </div>
 
-        <div>
-          <label>Street Name:</label>
-          <input type="text" value={streetName} onChange={(e) => setStreetName(e.target.value)} required />
-        </div>
+          <div>
+            <label>Street Name:</label>
+            <input type="text" value={streetName} onChange={(e) => setStreetName(e.target.value)} required />
+          </div>
 
-        {address && streetName && (
-          <p>
-            <a href={`https://www.google.com/maps?q=${encodeURIComponent(address + " " + streetName)}`} target="_blank" rel="noopener noreferrer">
-              📍 View on Google Maps
-            </a>
-          </p>
-        )}
-
-        <button type="submit">Submit Booking</button>
-      </form>
+          <button type="submit" className="submit-btn" disabled={isSubmitting}>
+            {isSubmitting ? <ClipLoader size={24} /> : "Submit Booking"}
+          </button>
+        </form>
+      )}
     </div>
   );
 };

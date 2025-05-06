@@ -6,7 +6,7 @@ import './Booking.css';
 const Booking = () => {
   return (
     <div className="booking-page">
-      <h1>Book a Cleaning Service</h1>
+      <h1>Schedule Your Cleaning or Gardening Service</h1>
       <BookingForm />
     </div>
   );

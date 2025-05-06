@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Use this instead of useHistory
+import { useNavigate } from "react-router-dom";
 import "./QuoteModal.css";
-
 
 const pricingData = {
   onceOff: {
@@ -41,7 +40,7 @@ const pricingData = {
 };
 
 const QuoteModal = ({ service, onClose }) => {
-  const navigate = useNavigate(); // ✅ Use navigate instead of history
+  const navigate = useNavigate();
 
   const [frequency, setFrequency] = useState("onceOff");
   const [cleaningType, setCleaningType] = useState("basic");
@@ -51,19 +50,29 @@ const QuoteModal = ({ service, onClose }) => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    let price = 0;
-    if (frequency === "onceOff") {
-      price = pricingData.onceOff[cleaningType][bedrooms];
-    } else {
-      price = pricingData.monthly[frequency][bedrooms];
+    if (service !== "Gardening") {
+      let price = 0;
+      if (frequency === "onceOff") {
+        price = pricingData.onceOff[cleaningType][bedrooms];
+      } else {
+        price = pricingData.monthly[frequency][bedrooms];
+      }
+      setTotal(price);
     }
-    setTotal(price);
-  }, [frequency, cleaningType, bedrooms]);
+  }, [frequency, cleaningType, bedrooms, service]);
 
   const handleContinueToBooking = () => {
-    const quoteData = { service, frequency, cleaningType, bedrooms, total, notes };
+    const quoteData = {
+      service,
+      frequency,
+      cleaningType,
+      bedrooms,
+      total,
+      email,
+      notes,
+    };
     localStorage.setItem("quoteInfo", JSON.stringify(quoteData));
-    navigate("/booking"); // ✅ Navigates to Booking page
+    navigate("/booking");
   };
 
   return (
@@ -71,61 +80,114 @@ const QuoteModal = ({ service, onClose }) => {
       <div className="quote-content">
         <h2>{service}</h2>
 
-        <div className="input-group">
-          <label>Frequency</label>
-          <select value={frequency} onChange={(e) => setFrequency(e.target.value)}>
-            <option value="onceOff">Once-off</option>
-            <option value="once">Once a week</option>
-            <option value="twice">Twice a week</option>
-            <option value="thrice">Thrice a week</option>
-          </select>
-        </div>
+        {service === "Gardening" ? (
+          <>
+            <div className="input-group">
+              <label>Frequency</label>
+              <select value={frequency} onChange={(e) => setFrequency(e.target.value)}>
+                <option value="onceOff">Once-off</option>
+                <option value="once">Weekly</option>
+                <option value="twice">Twice a week</option>
+                <option value="thrice">Thrice a week</option>
+              </select>
+            </div>
 
-        {frequency === "onceOff" && (
-          <div className="input-group">
-            <label>Cleaning Type</label>
-            <select value={cleaningType} onChange={(e) => setCleaningType(e.target.value)}>
-              <option value="basic">Basic</option>
-              <option value="deep">Deep</option>
-            </select>
-          </div>
+            <div className="input-group">
+              <label>Your Email</label>
+              <input
+                type="email"
+                placeholder="example@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="input-group">
+              <label>Custom Notes</label>
+              <textarea
+                placeholder="Describe your gardening needs..."
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+              />
+            </div>
+
+            <div className="quote-buttons">
+              <button
+                onClick={() => {
+                  const quoteData = {
+                    service,
+                    frequency,
+                    email,
+                    notes,
+                  };
+                  localStorage.setItem("quoteInfo", JSON.stringify(quoteData));
+                  navigate("/booking");
+                }}
+              >
+                📋 Send Gardening Quote
+              </button>
+              <button onClick={onClose}>❌ Close</button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="input-group">
+              <label>Frequency</label>
+              <select value={frequency} onChange={(e) => setFrequency(e.target.value)}>
+                <option value="onceOff">Once-off</option>
+                <option value="once">Once a week</option>
+                <option value="twice">Twice a week</option>
+                <option value="thrice">Thrice a week</option>
+              </select>
+            </div>
+
+            {frequency === "onceOff" && (
+              <div className="input-group">
+                <label>Cleaning Type</label>
+                <select value={cleaningType} onChange={(e) => setCleaningType(e.target.value)}>
+                  <option value="basic">Basic</option>
+                  <option value="deep">Deep</option>
+                </select>
+              </div>
+            )}
+
+            <div className="input-group">
+              <label>Bedrooms</label>
+              <select value={bedrooms} onChange={(e) => setBedrooms(e.target.value)}>
+                <option value="1 Bedroom">1 Bedroom</option>
+                <option value="2 Bedrooms">2 Bedrooms</option>
+                <option value="3 Bedrooms">3 Bedrooms</option>
+                <option value="4 Bedrooms">4 Bedrooms</option>
+              </select>
+            </div>
+
+            <div className="input-group">
+              <label>Your Email</label>
+              <input
+                type="email"
+                placeholder="example@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="input-group">
+              <label>Custom Notes</label>
+              <textarea
+                placeholder="Special requests or details..."
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+              />
+            </div>
+
+            <h3>Total: R{total}</h3>
+
+            <div className="quote-buttons">
+              <button onClick={handleContinueToBooking}>📋 Continue to Booking</button>
+              <button onClick={onClose}>❌ Close</button>
+            </div>
+          </>
         )}
-
-        <div className="input-group">
-          <label>Bedrooms</label>
-          <select value={bedrooms} onChange={(e) => setBedrooms(e.target.value)}>
-            <option value="1 Bedroom">1 Bedroom</option>
-            <option value="2 Bedrooms">2 Bedrooms</option>
-            <option value="3 Bedrooms">3 Bedrooms</option>
-            <option value="4 Bedrooms">4 Bedrooms</option>
-          </select>
-        </div>
-
-        <div className="input-group">
-          <label>Your Email</label>
-          <input
-            type="email"
-            placeholder="example@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
-        <div className="input-group">
-          <label>Custom Notes</label>
-          <textarea
-            placeholder="Special requests or details..."
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-          />
-        </div>
-
-        <h3>Total: R{total}</h3>
-
-        <div className="quote-buttons">
-          <button onClick={handleContinueToBooking}>📋 Continue to Booking</button>
-          <button onClick={onClose}>❌ Close</button>
-        </div>
       </div>
     </div>
   );

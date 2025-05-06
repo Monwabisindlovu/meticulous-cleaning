@@ -12,6 +12,7 @@ import stainRemovalImg from '../assets/stain-removal.pjb.avif';
 import pestControlImg from '../assets/pest-control.pjg.jpg';
 import officeCleaningImg from '../assets/office-cleaning.jpg';
 import deepCleaningImg from '../assets/deep-cleaning.jpg.jpg';
+import gardenBackgroundImg from '../assets/garden-background.jpg'; // 🆕 Added
 
 const services = [
   {
@@ -77,6 +78,12 @@ const services = [
     imageBackground: true,
     backgroundImage: deepCleaningImg,
   },
+  {
+    name: "Gardening",
+    description: "Garden maintenance, trimming, planting, and more for a beautiful outdoor space.",
+    imageBackground: true,
+    backgroundImage: gardenBackgroundImg,
+  },
 ];
 
 const Services = () => {
@@ -96,7 +103,7 @@ const Services = () => {
           >
             <h3>{service.name}</h3>
             <p>{service.description}</p>
-            <p className="price">{service.price}</p>
+            {service.price && <p className="price">{service.price}</p>}
             <div className="service-buttons">
               <button
                 className="book-now-btn"
