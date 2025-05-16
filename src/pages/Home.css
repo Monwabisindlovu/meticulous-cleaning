@@ -4,7 +4,7 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgb(249, 246, 243);
+  background-color: rgb(249, 246, 172);
   padding: 40px 20px;
   color: white;
   text-align: center;
@@ -144,23 +144,95 @@
 .view-more-btn:hover {
   background-color: #e0559d;
 }
-
-/* Services Link Section */
-.services-link {
-  padding: 1rem;
-  text-align: center;
-  background-color: rgb(249, 246, 243);
+/* 🌟 Modern Services Link Section */
+.services-link-section {
+  background-color: #fdf8f6; /* Soft cream-pink */
+  padding: 3rem 1.5rem;
+  border-radius: 16px;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
 }
 
-.services-link a {
-  color: #0284c7;
-  font-weight: 500;
+.services-link-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Icon styling */
+.services-icon {
+  flex-shrink: 0;
+  background-color: #ffe6e6;
+  padding: 1.5rem;
+  border-radius: 50%;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Text content styling */
+.services-text {
+  max-width: 600px;
+  text-align: left;
+}
+
+.services-text h2 {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  color: #4b2e2e;
+}
+
+.services-text p {
+  font-size: 1.05rem;
+  color: #5a4d4d;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.services-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: #0284c7;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
   text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.services-link a:hover {
-  text-decoration: underline;
+.services-button:hover {
+  background-color: #0369a1;
+  transform: translateY(-2px);
 }
+
+/* 📱 Responsive layout */
+@media (max-width: 768px) {
+  .services-link-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .services-text {
+    max-width: 100%;
+  }
+
+  .services-icon {
+    margin-bottom: 1rem;
+  }
+
+  .services-text h2 {
+    font-size: 1.6rem;
+  }
+
+  .services-text p {
+    font-size: 1rem;
+  }
+}
+
 
 /* Testimonials */
 .testimonials {

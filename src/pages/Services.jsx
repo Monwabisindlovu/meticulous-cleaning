@@ -8,7 +8,8 @@ import floorCleaningImg from '../assets/Floor_Cleaning.jpg';
 import carpetCleaningImg from '../assets/carpet_cleaner.jpg';
 import movingServicesImg from '../assets/moving-services.jpeg';
 import vacuumingImg from '../assets/vaccuming.png';
-import stainRemovalImg from '../assets/stain-removal.pjb.avif';
+import stainRemovalImg from "../assets/stain-removal.jpg"; // or .avif, but with correct extension
+
 import pestControlImg from '../assets/pest-control.pjg.jpg';
 import officeCleaningImg from '../assets/office-cleaning.jpg';
 import deepCleaningImg from '../assets/deep-cleaning.jpg.jpg';

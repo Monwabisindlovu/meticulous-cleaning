@@ -1,215 +1,127 @@
-/* Overall Page Section */
-.our-work-page {
-  padding: 2rem;
-  background-color: rgb(249, 231, 220);
-  color: #333;
-  box-sizing: border-box;
+.our-work-section {
+  padding: 3rem 1rem;
+  background-color: #f8f8f8;
 }
 
-/* Shared Section Spacing */
-.interactive-slider,
-.work-gallery,
-.our-work-gallery,
-.client-story,
-.benefit-boxes,
-.cleaning-gif,
-.quick-stats,
-.soft-cta {
-  margin-bottom: 3rem;
-}
-
-/* Top Service Showcase Preview */
-.service-showcase {
-  padding: 2rem;
-  background-color: #f9f9f9;
-}
-
-/* Preview Section - Top 2-3 Items */
-.our-work-gallery {
-  padding: 40px 20px;
-  text-align: center;
-  background-color: #fdfdfd;
-  margin-bottom: 20px;
-}
-
-/* Our Work Wrapper */
-.our-work-wrapper {
-  max-width: 1000px;
-  margin: 0 auto; /* Centrally aligns the container */
-}
-
-/* Header Styling */
-.our-work-gallery h2 {
-  color: #0284c7;
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.our-work-gallery p {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  color: #444;
-}
-
-/* Image Row Wrapper */
-.gallery-preview {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* ✅ CENTER ROWS */
-  gap: 20px;
+.our-work-container {
+  max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
-  max-width: 1200px; /* Optional cap */
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-/* Individual Image Cards */
+/* Text on the left */
+.our-work-text {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  color: #374151;
+}
+
+.our-work-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.our-work-text p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+.view-gallery-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.5);
+}
+
+.view-gallery-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Gallery on the right */
+.our-work-gallery-preview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 300px;
+}
+
 .gallery-item {
-  max-width: 300px;
-  text-align: center;
+  background: white;
+  padding: 0.8rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 320px;
 }
 
-/* Image Styling */
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+
 .preview-img {
   width: 100%;
-  height: auto;
+  height: 220px;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  cursor: pointer;
+  display: block;
+  background-color: #e5e7eb;
 }
 
-.preview-img:hover {
-  transform: scale(1.03);
+.caption {
+  margin-top: 0.5rem;
+  text-align: left;
 }
 
-/* Labels and Story */
-.image-label {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #0284c7;
+.caption strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 0.2rem;
+  color: #111827;
 }
 
-.client-story {
-  font-size: 0.9rem;
-  color: #555;
-  margin-top: 5px;
+.caption p {
+  font-size: 0.95rem;
+  color: #6b7280;
 }
 
-/* View More Button */
-.view-more-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color:rgb(255, 248, 105);
-  border: none;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.view-more-btn:hover {
-  background-color: #e0559d;
-}
-
-/* Benefit Section */
-.benefit-boxes {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  font-style: italic;
-  background: #f1f1f1;
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-/* Cleaning GIF */
-.cleaning-gif img {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 12px;
-}
-
-/* Quick Stats */
-.quick-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-weight: bold;
-  color: #444;
-}
-
-/* Soft Call-To-Action */
-.soft-cta {
-  text-align: center;
-}
-
-.book-now-btn {
-  background-color: #ff6699;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.book-now-btn:hover {
-  background-color: #e55588;
-}
-
-/* Responsive Adjustments */
-@media screen and (max-width: 768px) {
-  .gallery-item {
-    max-width: 90%;
-    margin: 0 auto;
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .our-work-container {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .image-label {
-    font-size: 0.95rem;
-  }
-
-  .client-story {
-    font-size: 0.85rem;
-  }
-
-  .view-more-btn {
-    font-size: 0.95rem;
-    padding: 0.6rem 1.2rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .our-work-gallery {
-    padding: 1rem;
-  }
-
-  .gallery-preview {
-    padding: 0;
-    margin: 0 auto;
-  }
-
-  .gallery-item {
+  .our-work-text,
+  .our-work-gallery-preview {
     width: 100%;
-    max-width: 90%;
-    margin: 0 auto;
   }
 
-  .image-label {
-    font-size: 0.9rem;
-  }
-
-  .client-story {
-    font-size: 0.8rem;
+  .gallery-item {
+    margin-bottom: 1rem;
   }
 
   .preview-img {
-    border-radius: 8px;
-  }
-
-  .view-more-btn {
-    width: 100%;
-    font-size: 1rem;
+    height: 200px;
   }
 }
