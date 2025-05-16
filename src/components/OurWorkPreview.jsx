@@ -3,11 +3,13 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
 import carpet from "../assets/carpet-after and before.jpg";
-import beforeAfter from "../assets/before-and-after-cleaning.jpg"; // 🔁 updated image
+import beforeAfter from "../assets/before-and-after-cleaning.jpg";
 import kitchenSink from "../assets/after-cleaning.jpg";
-import carpet2 from "../assets/carpet_cleaner.jpg";
 import stainRemovalImg from "../assets/stain-removal.jpg";
-import office from "../assets/office-cleaning.jpg";
+import macrowaveBefore from "../assets/macrowave.before.jpg";
+import microwaveAfter from "../assets/microwave-after.jpg";
+import after1 from "../assets/after1.jpg";
+import before1 from "../assets/before1.jpg";
 
 const previewImages = [
   {
@@ -30,19 +32,29 @@ const previewImages = [
 const allImages = [
   ...previewImages,
   {
-    src: carpet2,
-    label: "Carpet Cleaning",
-    story: "Removed stubborn stains with eco-friendly products.",
-  },
-  {
     src: stainRemovalImg,
     label: "Stain Removal",
     story: "Grease and wine stains lifted from the couch fabric.",
   },
   {
-    src: office,
-    label: "Office Deep Clean",
-    story: "Transformed a dusty office into a pristine workspace.",
+    src: macrowaveBefore,
+    label: "Microwave Before",
+    story: "Heavy stains inside the microwave before cleaning.",
+  },
+  {
+    src: microwaveAfter,
+    label: "Microwave After",
+    story: "Shiny and spotless microwave after professional cleaning.",
+  },
+  {
+    src: before1,
+    label: "Room Before",
+    story: "Cluttered and dusty room before our service.",
+  },
+  {
+    src: after1,
+    label: "Room After",
+    story: "Neatly arranged and freshly cleaned space.",
   },
 ];
 
