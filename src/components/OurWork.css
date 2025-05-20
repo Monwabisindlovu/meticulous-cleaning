@@ -1,8 +1,10 @@
+/* Main Section */
 .our-work-section {
   padding: 3rem 1rem;
   background-color: #f8f8f8;
 }
 
+/* Layout container */
 .our-work-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -14,7 +16,7 @@
   flex-wrap: wrap;
 }
 
-/* Text on the left */
+/* Left Text Content */
 .our-work-text {
   flex: 1;
   min-width: 300px;
@@ -36,24 +38,7 @@
   margin-bottom: 1rem;
 }
 
-.view-gallery-btn {
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  padding: 0.7rem 1.5rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-weight: 600;
-  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.5);
-}
-
-.view-gallery-btn:hover {
-  background-color: #1d4ed8;
-}
-
-/* Gallery on the right */
+/* Gallery Preview (Desktop) */
 .our-work-gallery-preview {
   flex: 1;
   display: flex;
@@ -66,26 +51,32 @@
   background: white;
   padding: 0.8rem;
   border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   min-height: 320px;
+  text-align: center;
 }
 
 .gallery-item:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 .preview-img {
   width: 100%;
-  height: 220px;
+  height: auto;
   object-fit: cover;
-  border-radius: 8px;
-  display: block;
+  border-radius: 12px;
   background-color: #e5e7eb;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.preview-img:hover {
+  transform: scale(1.03);
 }
 
 .caption {
@@ -93,19 +84,74 @@
   text-align: left;
 }
 
-.caption strong {
+.caption strong,
+.image-label {
   display: block;
   font-size: 1.05rem;
-  margin-bottom: 0.2rem;
+  font-weight: bold;
   color: #111827;
+  margin-top: 0.5rem;
 }
 
-.caption p {
-  font-size: 0.95rem;
-  color: #6b7280;
+.caption p,
+.client-story {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.25rem;
 }
 
-/* Responsive Layout */
+/* Button - Optional Soft Yellow Version */
+.view-gallery-btn {
+  background-color: #fcd34d; /* Yellow-300 */
+  color: #000;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(252, 211, 77, 0.5);
+}
+
+.view-gallery-btn:hover {
+  background-color: #fbbf24; /* Yellow-400 */
+}
+
+/* View More Button - Updated to pink theme */
+.view-more-btn {
+  background-color: #ff69b4;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.view-more-btn:hover {
+  background-color: #ff4da6;
+}
+
+/* Swiper Carousel (Mobile) */
+.our-work-carousel {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.our-work-carousel .swiper-slide {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
   .our-work-container {
     flex-direction: column;
@@ -122,6 +168,21 @@
   }
 
   .preview-img {
-    height: 200px;
+    height: auto;
+  }
+
+  /* Hide desktop gallery, show carousel */
+  .our-work-gallery-preview {
+    display: none;
+  }
+
+  .our-work-carousel {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .our-work-carousel {
+    display: none;
   }
 }

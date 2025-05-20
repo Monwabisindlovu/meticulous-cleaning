@@ -1,7 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Autoplay,
+  Pagination,
+  EffectCoverflow,
+} from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
 
+// Images
 import carpet from "../assets/carpet-after and before.jpg";
 import beforeAfter from "../assets/before-and-after-cleaning.jpg";
 import kitchenSink from "../assets/after-cleaning.jpg";
@@ -11,6 +21,7 @@ import microwaveAfter from "../assets/microwave-after.jpg";
 import after1 from "../assets/after1.jpg";
 import before1 from "../assets/before1.jpg";
 
+// Preview images shown in the slider
 const previewImages = [
   {
     src: carpet,
@@ -29,6 +40,7 @@ const previewImages = [
   },
 ];
 
+// All images shown in the full gallery
 const allImages = [
   ...previewImages,
   {
@@ -61,6 +73,14 @@ const allImages = [
 const OurWorkPreview = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <section className="our-work-gallery">
@@ -80,22 +100,43 @@ const OurWorkPreview = () => {
             </p>
           </div>
 
-          <div className="gallery-preview">
-            {previewImages.map((img, index) => (
-              <div className="gallery-item" key={index}>
-                <img
-                  src={img.src}
-                  alt={img.label}
-                  onClick={() => {
-                    setPhotoIndex(index);
-                    setIsOpen(true);
-                  }}
-                  className="preview-img"
-                />
-                <p className="image-label"><strong>{img.label}</strong></p>
-                <p className="client-story">{img.story}</p>
-              </div>
-            ))}
+          <div className="our-work-carousel">
+            <Swiper
+              modules={[Autoplay, Pagination, EffectCoverflow]}
+              effect="coverflow"
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={"auto"}
+              coverflowEffect={{
+                rotate: 30,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              pagination={{ clickable: true }}
+              loop={true}
+            >
+              {previewImages.map((img, index) => (
+                <SwiperSlide key={index} style={{ width: "260px" }}>
+                  <div
+                    className="gallery-item"
+                    onClick={() => {
+                      setPhotoIndex(index);
+                      setIsOpen(true);
+                    }}
+                  >
+                    <img src={img.src} alt={img.label} className="preview-img" />
+                    <p className="image-label"><strong>{img.label}</strong></p>
+                    <p className="client-story">{img.story}</p>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
 

@@ -22,28 +22,18 @@ import ServicesLinkSection from '@/components/ServicesLinkSection'; // NEW moder
 const Home = () => {
   return (
     <div>
-      {/* Hero Section */}
-      <section
-        className="hero"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          padding: '100px 20px',
-          color: 'white',
-          textAlign: 'center',
-        }}
-      >
-        <div className="hero-text-box">
-          <h1>Meticulous Cleaning Services</h1>
-          <p>Where Cleanliness Meets Perfection!</p>
-
-          <Link to="/booking">
-            <button>Book Now</button>
-          </Link>
-        </div>
-      </section>
+      <section className="hero">
+  <img src={heroImage} alt="Cleaning Hero" className="hero-img" />
+  <div className="hero-overlay">
+    <div className="hero-text-box">
+      <h1>Meticulous Cleaning Services</h1>
+      <p>Where Cleanliness Meets Perfection!</p>
+      <Link to="/booking">
+        <button>Book Now</button>
+      </Link>
+    </div>
+  </div>
+</section>
 
       {/* Zip Code Checker */}
       <section className="zip-code-checker">

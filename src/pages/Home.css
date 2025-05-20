@@ -1,86 +1,68 @@
 .hero {
-  background: url('../assets/cleaning1-hero.jpg') no-repeat center center/cover;
-  padding: 4rem 1.5rem;
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full screen height */
+  max-height: 700px;
+  overflow: hidden;
   border-radius: 24px;
   margin: 3rem auto;
   max-width: 1200px;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-  min-height: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center; /* Keep image centered */
+  z-index: 0;
+  display: block;
 }
 
 .hero-overlay {
-  background: linear-gradient(to right, #00000099, #000000cc);
-  padding: 3rem 2rem;
-  border-radius: 24px;
+  position: relative;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+  z-index: 1;
+  padding: 4rem 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 600px;
   width: 100%;
+  height: 100%;
 }
 
 .hero-text-box {
+  background-color: transparent;
   padding: 20px 30px;
   border-radius: 12px;
-  display: inline-block;
-  box-shadow: none;
-  background-color: transparent;
+  text-align: center;
+  color: white;
 }
 
 .hero-text-box h1 {
-  margin: 0;
-  color: blue;
   font-size: 3rem;
+  color: #fef08a;
 }
 
 .hero-text-box p {
-  margin: 10px 0;
-  color: green;
   font-size: 1.5rem;
-}
-
-/* Buttons in Hero Section */
-.hero-text-box button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #0284c7;
-  border: none;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.hero-text-box:hover {
-  transform: rotate(1deg);
-}
-
-.hero-text-box h1 {
-  margin: 0;
-  font-size: 3rem;
   color: #0ea5e9;
-}
-
-.hero-text-box p {
   margin: 1rem 0;
-  font-size: 1.5rem;
-  color: white;
 }
 
 .hero-text-box button {
   margin-top: 15px;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  background-color: yellow;;
-  border: none;
+  background-color: rgb(249, 246, 172);
   color: #111827;
+  border: none;
   border-radius: 12px;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
   box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
   transition: all 0.3s ease;
 }
@@ -90,20 +72,42 @@
   transform: translateY(-2px);
 }
 
-
-@media (max-width: 480px) {
-  .hero {
-    background-position: center top;
-    background-size: cover; /* OR try contain if you prefer the full image visible */
-    min-height: 450px;
+/* Tablet adjustments */
+@media (max-width: 768px) {
+  .hero-text-box h1 {
+    font-size: 2rem;
   }
 
-  .hero-text-box {
-    padding: 1.5rem 1rem;
+  .hero-text-box p {
+    font-size: 1.2rem;
+  }
+
+  .hero-overlay {
+    padding: 3rem 1rem;
+    min-height: 450px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .hero {
+    height: 100vh;
+    max-height: none;
+  }
+
+  .hero-img {
+    object-position: center center;
+  }
+
+  .hero-overlay {
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    min-height: auto;
   }
 
   .hero-text-box h1 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .hero-text-box p {
@@ -111,14 +115,11 @@
   }
 
   .hero-text-box button {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     padding: 0.5rem 1rem;
   }
 }
 
-  .hero-text-box p {
-    font-size: 1.2rem;
-  }
 
 
 /* Zip Code Checker */
