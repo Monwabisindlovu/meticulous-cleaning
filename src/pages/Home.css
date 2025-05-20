@@ -62,7 +62,7 @@
 .hero-text-box h1 {
   margin: 0;
   font-size: 3rem;
-  color: blue;
+  color: #0ea5e9;
 }
 
 .hero-text-box p {
@@ -75,7 +75,7 @@
   margin-top: 15px;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  background-color: white;;
+  background-color: yellow;;
   border: none;
   color: #111827;
   border-radius: 12px;
@@ -213,7 +213,7 @@
   background-color: #e0559d;
 }
 .services-link-section-modern {
-  background: url('/assets/cleaning-bg.jpg') no-repeat center center/cover;
+  background: url('../assets/cleaning-bg.jpg') no-repeat center center/cover;
   padding: 4rem 1.5rem;
   border-radius: 24px;
   margin: 3rem auto;
@@ -224,7 +224,6 @@
 }
 
 .services-overlay {
-  background: linear-gradient(to right, #00000099, #000000cc);
   padding: 3rem 2rem;
   border-radius: 24px;
   display: flex;
@@ -232,54 +231,26 @@
   align-items: center;
 }
 
-.services-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  border: 2px solid transparent;
-  border-radius: 20px;
-  padding: 2rem;
-  max-width: 900px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1);
-  transition: transform 0.2s ease;
-  border-image: linear-gradient(135deg, #38bdf8, #f472b6, #facc15) 1;
-}
-
-.services-icon-modern {
-  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-  padding: 1.2rem;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-  transition: transform 0.3s ease;
-}
-
 .services-text-modern {
   flex: 1;
-  color: #ffffff;
+  color: yellow;
 }
 
 .services-text-modern h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #ffffff;
+  color: blue;
 }
 
 .services-text-modern p {
   font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 1.5rem;
-  color: #e5e7eb;
+  color: black;
 }
 
 .services-button-modern {
-  background-color: #facc15;
+  background-color: yellow;
   color: #111827;
   padding: 0.75rem 1.5rem;
   font-weight: bold;
