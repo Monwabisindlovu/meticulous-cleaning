@@ -1,44 +1,86 @@
-/* Overall Page Section */
-.our-work-page {
-  padding: 2rem;
-  background-color: rgb(249, 231, 220);
-  color: #333;
-  box-sizing: border-box;
+/* Hero Section - Ensures the whole image is displayed without zoom or cropping */
+.hero {
+  background-image: url('../assets/cleaning-hero.jpg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgb(249, 246, 172);
+  padding: 40px 20px;
+  color: white;
+  text-align: center;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
-/* Shared Section Spacing */
-.interactive-slider,
-.work-gallery,
-.our-work-gallery,
-.client-story,
-.benefit-boxes,
-.cleaning-gif,
-.quick-stats,
-.soft-cta {
-  margin-bottom: 3rem;
+/* Hero Text Box - no background, transparent */
+.hero-text-box {
+  padding: 20px 30px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: none;
+  background-color: transparent;
 }
 
-/* Top Service Showcase Preview */
-.service-showcase {
-  padding: 2rem;
-  background-color: #f9f9f9;
+.hero-text-box h1 {
+  margin: 0;
+  color: #0284c7;
+  font-size: 3rem;
 }
 
-/* Preview Section - Top 2-3 Items */
+.hero-text-box p {
+  margin: 10px 0;
+  color: #8B4513;
+  font-size: 1.5rem;
+}
+
+/* Buttons in Hero Section */
+.hero-text-box button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #0284c7;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.hero-text-box button:hover {
+  background-color: #0369a1;
+}
+
+/* Zip Code Checker */
+.zip-code-checker {
+  margin-top: 0;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+/* Call-to-Action Section */
+.cta {
+  background-color: rgb(19, 19, 19);;
+  padding: 40px;
+  text-align: center;
+}
+
+/* Our Work Section */
 .our-work-gallery {
   padding: 40px 20px;
   text-align: center;
-  background-color: #fdfdfd;
+  background-color: rgb(255, 246, 246);
   margin-bottom: 20px;
 }
 
-/* Our Work Wrapper */
 .our-work-wrapper {
   max-width: 1000px;
-  margin: 0 auto; /* Centrally aligns the container */
+  margin: 0 auto;
 }
 
-/* Header Styling */
 .our-work-gallery h2 {
   color: #0284c7;
   font-size: 2rem;
@@ -47,44 +89,35 @@
 
 .our-work-gallery p {
   font-size: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.1rem;
   color: #444;
 }
 
-/* Image Row Wrapper */
 .gallery-preview {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* ✅ CENTER ROWS */
+  justify-content: center;
   gap: 20px;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1200px; /* Optional cap */
-  box-sizing: border-box;
 }
 
-/* Individual Image Cards */
 .gallery-item {
   max-width: 300px;
   text-align: center;
 }
 
-/* Image Styling */
 .preview-img {
   width: 100%;
   height: auto;
-  object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
   cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .preview-img:hover {
   transform: scale(1.03);
 }
 
-/* Labels and Story */
 .image-label {
   margin-top: 10px;
   font-weight: bold;
@@ -97,11 +130,10 @@
   margin-top: 5px;
 }
 
-/* View More Button */
 .view-more-btn {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color:rgb(255, 248, 105);
+  background-color: #0284c7;
   border: none;
   color: white;
   border-radius: 8px;
@@ -112,104 +144,242 @@
 .view-more-btn:hover {
   background-color: #e0559d;
 }
-
-/* Benefit Section */
-.benefit-boxes {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  font-style: italic;
-  background: #f1f1f1;
-  padding: 1rem;
-  border-radius: 8px;
+/* 🌟 Modern Services Link Section */
+.services-link-section {
+  background-color: #fdf8f6; /* Soft cream-pink */
+  padding: 3rem 1.5rem;
+  border-radius: 16px;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
 }
 
-/* Cleaning GIF */
-.cleaning-gif img {
-  width: 100%;
+.services-link-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Icon styling */
+.services-icon {
+  flex-shrink: 0;
+  background-color: #ffe6e6;
+  padding: 1.5rem;
+  border-radius: 50%;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Text content styling */
+.services-text {
   max-width: 600px;
-  border-radius: 12px;
+  text-align: left;
 }
 
-/* Quick Stats */
-.quick-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-weight: bold;
-  color: #444;
+.services-text h2 {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  color: #4b2e2e;
 }
 
-/* Soft Call-To-Action */
-.soft-cta {
-  text-align: center;
+.services-text p {
+  font-size: 1.05rem;
+  color: #5a4d4d;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
 }
 
-.book-now-btn {
-  background-color: #ff6699;
+.services-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: #0284c7;
   color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  font-weight: 600;
   border-radius: 8px;
-  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.book-now-btn:hover {
-  background-color: #e55588;
+.services-button:hover {
+  background-color: #0369a1;
+  transform: translateY(-2px);
 }
 
-/* Responsive Adjustments */
-@media screen and (max-width: 768px) {
-  .gallery-item {
-    max-width: 90%;
-    margin: 0 auto;
+/* 📱 Responsive layout */
+@media (max-width: 768px) {
+  .services-link-content {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .image-label {
-    font-size: 0.95rem;
+  .services-text {
+    max-width: 100%;
   }
 
-  .client-story {
+  .services-icon {
+    margin-bottom: 1rem;
+  }
+
+  .services-text h2 {
+    font-size: 1.6rem;
+  }
+
+  .services-text p {
+    font-size: 1rem;
+  }
+}
+
+
+/* Testimonials */
+.testimonials {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f8f8f8;
+}
+
+.view-all-reviews {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #0284c7;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view-all-reviews:hover {
+  text-decoration: underline;
+}
+
+/* Remove space between hero and next sections */
+.service-showcase,
+.zip-code-checker,
+.cta {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* ============================== */
+/* Footer Section - Add to Bottom */
+/* ============================== */
+.footer-section-on-home {
+  background-color: transparent;
+  color: #f2f2f2;
+  padding: 40px 20px;
+  font-size: 1rem;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column {
+  flex: 1 1 300px;
+  min-width: 200px;
+}
+
+.footer-column h4 {
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  color: #ff69b4;
+}
+
+.footer-column a,
+.footer-column p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  color: #444;
+  text-decoration: none;
+  font-size: 0.95em;
+  transition: color 0.2s ease;
+  background: none !important;
+}
+
+.footer-column a:hover,
+.footer-column p:hover {
+  color: #0284c7;
+}
+
+/* Social Icons Row (optional) */
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  color: inherit;
+}
+
+.social-icons a: {
+  color: #0284c7;
+}
+
+/* =============== */
+/* Responsive View */
+/* =============== */
+@media (max-width: 768px) {
+  .footer-grid {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    text-align: left;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  .footer-column {
+    flex: 1 1 33%;
+    min-width: auto;
+  }
+
+  .footer-section-on-home {
     font-size: 0.85rem;
+    padding: 30px 15px;
   }
 
-  .view-more-btn {
-    font-size: 0.95rem;
-    padding: 0.6rem 1.2rem;
+  .footer-column h4 {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+
+  .footer-column a,
+  .footer-column p {
+    font-size: 0.85em;
+    line-height: 1.4;
+  }
+
+  .social-icons {
+    justify-content: flex-start;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .our-work-gallery {
-    padding: 1rem;
-  }
-
-  .gallery-preview {
-    padding: 0;
-    margin: 0 auto;
-  }
-
-  .gallery-item {
-    width: 100%;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-
-  .image-label {
-    font-size: 0.9rem;
-  }
-
-  .client-story {
+@media (max-width: 500px) {
+  .footer-section-on-home {
     font-size: 0.8rem;
   }
 
-  .preview-img {
-    border-radius: 8px;
+  .footer-column h4 {
+    font-size: 0.95em;
   }
 
-  .view-more-btn {
-    width: 100%;
-    font-size: 1rem;
+  .footer-grid {
+    flex-wrap: nowrap;
+    gap: 5px;
+  }
+
+  .footer-column {
+    padding: 0 5px;
   }
 }

@@ -1,57 +1,95 @@
-/* Hero Section - Ensures the whole image is displayed without zoom or cropping */
 .hero {
-  background-image: url('../assets/cleaning-hero.jpg');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: rgb(249, 246, 172);
-  padding: 40px 20px;
-  color: white;
-  text-align: center;
-  min-height: 60vh;
+  background: url('../assets/cleaning1-hero.jpg') no-repeat center center/cover;
+  padding: 4rem 1.5rem;
+  border-radius: 24px;
+  margin: 3rem auto;
+  max-width: 1200px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  min-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0;
-  margin-top: 0;
 }
 
-/* Hero Text Box - no background, transparent */
+.hero-overlay {
+  background: linear-gradient(to right, #00000099, #000000cc);
+  padding: 3rem 2rem;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .hero-text-box {
-  padding: 20px 30px;
-  border-radius: 12px;
-  display: inline-block;
-  box-shadow: none;
-  background-color: transparent;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 3px solid transparent;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease;
+  border-image: linear-gradient(135deg, #38bdf8, #f472b6, #facc15) 1;
+}
+
+.hero-text-box:hover {
+  transform: rotate(1deg);
 }
 
 .hero-text-box h1 {
   margin: 0;
-  color: #0284c7;
   font-size: 3rem;
+  color: #facc15;
 }
 
 .hero-text-box p {
-  margin: 10px 0;
-  color: #8B4513;
+  margin: 1rem 0;
   font-size: 1.5rem;
+  color: #e5e7eb;
 }
 
-/* Buttons in Hero Section */
 .hero-text-box button {
   margin-top: 15px;
-  padding: 10px 20px;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  background-color: #0284c7;
+  background-color: #facc15;
   border: none;
-  color: white;
-  border-radius: 8px;
+  color: #111827;
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+  transition: all 0.3s ease;
 }
 
 .hero-text-box button:hover {
-  background-color: #0369a1;
+  background-color: #eab308;
+  transform: translateY(-2px);
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 1rem;
+    min-height: 500px;
+  }
+
+  .hero-text-box h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text-box p {
+    font-size: 1.2rem;
+  }
+}
+
+
 
 /* Zip Code Checker */
 .zip-code-checker {
@@ -61,9 +99,9 @@
   margin-bottom: 0px;
 }
 
-/* Call-to-Action Section */
+/* CTA Section */
 .cta {
-  background-color: rgb(19, 19, 19);;
+  background-color: rgb(19, 19, 19);
   padding: 40px;
   text-align: center;
 }
@@ -144,94 +182,108 @@
 .view-more-btn:hover {
   background-color: #e0559d;
 }
-/* 🌟 Modern Services Link Section */
-.services-link-section {
-  background-color: #fdf8f6; /* Soft cream-pink */
-  padding: 3rem 1.5rem;
-  border-radius: 16px;
-  margin: 2rem auto;
+
+.services-link-section-modern {
+  background: url('../assets/cleaning-bg.jpg') no-repeat center center/cover;
+  padding: 4rem 1.5rem;
+  border-radius: 24px;
+  margin: 3rem auto;
   max-width: 1200px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
-.services-link-content {
+.services-overlay {
+  
+  padding: 3rem 2rem;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.services-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 900px;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
-  justify-content: center;
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease;
+  border-image: linear-gradient(135deg, #38bdf8, #f472b6, #facc15) 1;
 }
 
-/* Icon styling */
-.services-icon {
-  flex-shrink: 0;
-  background-color: #ffe6e6;
-  padding: 1.5rem;
+.services-icon-modern {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  padding: 1.2rem;
   border-radius: 50%;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
 }
 
-/* Text content styling */
-.services-text {
-  max-width: 600px;
-  text-align: left;
+.services-text-modern {
+  flex: 1;
+  color: #ffffff;
 }
 
-.services-text h2 {
+.services-text-modern h2 {
   font-size: 2rem;
-  margin-bottom: 0.8rem;
-  color: #4b2e2e;
+  margin-bottom: 1rem;
+  color: #ffffff;
 }
 
-.services-text p {
-  font-size: 1.05rem;
-  color: #5a4d4d;
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
+.services-text-modern p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: #e5e7eb;
 }
 
-.services-button {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background-color: #0284c7;
-  color: white;
-  font-weight: 600;
-  border-radius: 8px;
+.services-button-modern {
+  background-color: #facc15;
+  color: #111827;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  border-radius: 12px;
   text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
 }
 
-.services-button:hover {
-  background-color: #0369a1;
+.services-button-modern:hover {
+  background-color: #eab308;
   transform: translateY(-2px);
 }
 
-/* 📱 Responsive layout */
 @media (max-width: 768px) {
-  .services-link-content {
+  .services-card {
     flex-direction: column;
     text-align: center;
   }
 
-  .services-text {
-    max-width: 100%;
+  .services-icon-modern {
+    margin-bottom: 1.2rem;
   }
 
-  .services-icon {
-    margin-bottom: 1rem;
-  }
-
-  .services-text h2 {
+  .services-text-modern h2 {
     font-size: 1.6rem;
   }
 
-  .services-text p {
+  .services-text-modern p {
     font-size: 1rem;
   }
 }
+
 
 
 /* Testimonials */

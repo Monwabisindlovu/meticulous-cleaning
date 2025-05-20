@@ -1,109 +1,113 @@
-import React, { useState } from 'react';
-import Lightbox from 'yet-another-react-lightbox';
-import 'yet-another-react-lightbox/styles.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {
+  FaWhatsapp,
+  FaEnvelope,
+  FaPhone,
+  FaFacebookF,
+  FaLinkedin,
+  FaInfoCircle,
+  FaShieldAlt,
+  FaFileContract,
+  FaBroom,
+} from 'react-icons/fa';
+import { SiTiktok } from 'react-icons/si';
 
-import updatedAfterCleaning from '../assets/before-and-after-cleaning.jpg';
-import after1AndAfter from '../assets/after1 and after.webp';
-import roomBeforeAfter from '../assets/room-before and after cleaning.jpeg';
-import carpetSlider from '../assets/carpet-after and before.jpg';
-import microwaveBefore from '../assets/macrowave.before.jpg';
-import microwaveAfter from '../assets/microwave-after.jpg';
+import heroImage from '../assets/cleaning-hero.jpg';
+import './Home.css';
 
-const allImages = [
-  {
-    src: updatedAfterCleaning,
-    label: 'Before & After Deep Clean',
-    story: 'Watch how this space was completely transformed with our expert deep cleaning service.'
-  },
-  {
-    src: after1AndAfter,
-    label: 'After Touch-Up',
-    story: "Built-up grime was no match for our team — this fridge is now spotless and fresh inside."
-  },
-  {
-    src: microwaveBefore,
-    label: 'Microwave – Before',
-    story: 'This microwave had built-up grime until we gave it a full interior clean.'
-  },
-  {
-    src: microwaveAfter,
-    label: 'Microwave – After',
-    story: 'A complete turnaround – safe, fresh, and ready to use.'
-  },
-  {
-    src: roomBeforeAfter,
-    label: 'Room Transformation',
-    story: 'This room had tough dirt build-up, but a deep clean brought it back to life.'
-  },
-  {
-    src: carpetSlider,
-    label: 'Carpet Renewal',
-    story: 'Carpet transformation from dull to dazzling – all in one visit.'
-  }
-];
+import ZipCodeChecker from '@/components/ZipCodeChecker';
+import OurWorkPreview from '@/components/OurWorkPreview';
 
-const OurWorkPreview = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [photoIndex, setPhotoIndex] = useState(0);
-
-  const previewImages = allImages.slice(0, 2); // Show only first two images
-
+const Home = () => {
   return (
-    <section className="our-work-gallery">
-      <h2>Our Work</h2>
-<p>
-  At <strong>Meticulous Cleaning Services</strong>, we go beyond basic cleaning —
-  we deliver transformations. From kitchens and carpets to offices and appliances,
-  our expert team tackles dirt, stains, and clutter with precision.
-  These photos showcase real before-and-after results from our happy clients,
-  highlighting the visible difference a professional clean can make.
-</p>
-<p>
-  Whether it's a deeply stained carpet or a messy microwave, our work speaks for itself.
-  Browse our gallery and see how we restore shine, freshness, and comfort to every space.
-</p>
+    <div>
+      {/* Hero Section */}
+      <section
+        className="hero"
+        style={{
+          backgroundImage: `url(${heroImage})`,
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          padding: '100px 20px',
+          color: 'white',
+          textAlign: 'center',
+        }}
+      >
+        <div className="hero-text-box">
+          <h1>Meticulous Cleaning Services</h1>
+          <p>Where Cleanliness Meets Perfection!</p>
 
-      <div className="gallery-preview">
-        {previewImages.map((img, index) => (
-          <div className="gallery-item" key={index}>
-            <img
-              src={img.src}
-              alt={img.label}
-              onClick={() => {
-                setPhotoIndex(index);
-                setIsOpen(true);
-              }}
-              className="preview-img"
-            />
-            <p className="image-label"><strong>{img.label}</strong></p>
-            <p className="client-story">{img.story}</p>
+          <Link to="/booking">
+            <button>Book Now</button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Zip Code Checker */}
+      <section className="zip-code-checker">
+        <ZipCodeChecker />
+      </section>
+
+      {/* Our Work Preview */}
+      <OurWorkPreview />
+
+      {/* Modern Services and Pricing Section */}
+      <section className="services-link-section">
+        <div className="services-link-content">
+          <div className="services-icon">
+            <FaBroom size={60} />
           </div>
-        ))}
-      </div>
+          <div className="services-text">
+            <h2>Explore Our Cleaning Services</h2>
+            <p>
+              From sparkling homes to spotless offices, we deliver meticulous cleaning for
+              <strong> residences, schools, offices, and commercial spaces</strong>. Whether it's a
+              once-off deep clean or regular maintenance, we’re here to make every corner shine.
+            </p>
+            <Link to="/services" className="services-button">
+              View All Services & Pricing →
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      <button className="view-more-btn" onClick={() => {
-        setIsOpen(true);
-        setPhotoIndex(0);
-      }}>
-        📸 View More Images
-      </button>
+      {/* Testimonials Section */}
+      <section className="testimonials">
+        <h2>What Our Customers Say</h2>
+        <Link to="/testimonials" className="view-all-reviews">View All Reviews →</Link>
+      </section>
 
-      {isOpen && (
-        <Lightbox
-          open={isOpen}
-          close={() => setIsOpen(false)}
-          slides={allImages.map((img) => ({
-            src: img.src,
-            description: `${img.label} - ${img.story || ''}`
-          }))}
-          index={photoIndex}
-          carousel={{ finite: false }}
-          animation={{ fade: 250 }}
-          controller={{ closeOnBackdropClick: true }}
-        />
-      )}
-    </section>
+      {/* Footer-style Section */}
+      <section className="footer-section-on-home">
+        <div className="footer-grid">
+          {/* Legal Links */}
+          <div className="footer-column">
+            <h4>Company</h4>
+            <Link to="/about"><FaInfoCircle /> About Us</Link>
+            <Link to="/privacy-policy"><FaShieldAlt /> Privacy Policy</Link>
+            <Link to="/terms"><FaFileContract /> Terms & Conditions</Link>
+          </div>
+
+          {/* Social Media */}
+          <div className="footer-column">
+            <h4>Follow Us</h4>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /> Facebook</a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"><SiTiktok /> TikTok</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedin /> LinkedIn</a>
+          </div>
+
+          {/* Customer Reviews */}
+          <div className="footer-column">
+            <h4>Customer Love ❤️</h4>
+            <p>“They transformed our office! Professional, fast, and so thorough.” – Jessica M.</p>
+            <p>“My carpets have never looked this good. 10/10 service.” – Thabo N.</p>
+            <p>“Reliable and kind team. Highly recommend for home cleans.” – Lindiwe K.</p>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
-export default OurWorkPreview;
+export default Home;

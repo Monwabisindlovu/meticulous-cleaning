@@ -9,15 +9,15 @@ import {
   FaInfoCircle,
   FaShieldAlt,
   FaFileContract,
-  FaBroom,
 } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
 
-import heroImage from '../assets/cleaning-hero.jpg';
+import heroImage from '../assets/cleaning1-hero.jpg';
 import './Home.css';
 
 import ZipCodeChecker from '@/components/ZipCodeChecker';
 import OurWorkPreview from '@/components/OurWorkPreview';
+import ServicesLinkSection from '@/components/ServicesLinkSection'; // NEW modern section
 
 const Home = () => {
   return (
@@ -29,6 +29,7 @@ const Home = () => {
           backgroundImage: `url(${heroImage})`,
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
           padding: '100px 20px',
           color: 'white',
           textAlign: 'center',
@@ -52,30 +53,15 @@ const Home = () => {
       {/* Our Work Preview */}
       <OurWorkPreview />
 
-      {/* Modern Services and Pricing Section */}
-      <section className="services-link-section">
-        <div className="services-link-content">
-          <div className="services-icon">
-            <FaBroom size={60} />
-          </div>
-          <div className="services-text">
-            <h2>Explore Our Cleaning Services</h2>
-            <p>
-              From sparkling homes to spotless offices, we deliver meticulous cleaning for
-              <strong> residences, schools, offices, and commercial spaces</strong>. Whether it's a
-              once-off deep clean or regular maintenance, we’re here to make every corner shine.
-            </p>
-            <Link to="/services" className="services-button">
-              View All Services & Pricing →
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Modern Services Section (updated) */}
+      <ServicesLinkSection />
 
       {/* Testimonials Section */}
       <section className="testimonials">
         <h2>What Our Customers Say</h2>
-        <Link to="/testimonials" className="view-all-reviews">View All Reviews →</Link>
+        <Link to="/testimonials" className="view-all-reviews">
+          View All Reviews →
+        </Link>
       </section>
 
       {/* Footer-style Section */}
