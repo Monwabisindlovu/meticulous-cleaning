@@ -24,18 +24,35 @@
 }
 
 .hero-text-box {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  border: 3px solid transparent;
-  border-radius: 20px;
-  padding: 2rem;
-  max-width: 900px;
-  width: 100%;
-  text-align: center;
+  padding: 20px 30px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.hero-text-box h1 {
+  margin: 0;
+  color: blue;
+  font-size: 3rem;
+}
+
+.hero-text-box p {
+  margin: 10px 0;
+  color: green;
+  font-size: 1.5rem;
+}
+
+/* Buttons in Hero Section */
+.hero-text-box button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #0284c7;
+  border: none;
   color: white;
-  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1);
-  transition: transform 0.2s ease;
-  border-image: linear-gradient(135deg, #38bdf8, #f472b6, #facc15) 1;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .hero-text-box:hover {
@@ -45,20 +62,20 @@
 .hero-text-box h1 {
   margin: 0;
   font-size: 3rem;
-  color: #facc15;
+  color: blue;
 }
 
 .hero-text-box p {
   margin: 1rem 0;
   font-size: 1.5rem;
-  color: #e5e7eb;
+  color: white;
 }
 
 .hero-text-box button {
   margin-top: 15px;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  background-color: #facc15;
+  background-color: white;;
   border: none;
   color: #111827;
   border-radius: 12px;
@@ -73,22 +90,35 @@
   transform: translateY(-2px);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+
+@media (max-width: 480px) {
   .hero {
-    padding: 2rem 1rem;
-    min-height: 500px;
+    background-position: center top;
+    background-size: cover; /* OR try contain if you prefer the full image visible */
+    min-height: 450px;
+  }
+
+  .hero-text-box {
+    padding: 1.5rem 1rem;
   }
 
   .hero-text-box h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
+
+  .hero-text-box p {
+    font-size: 1rem;
+  }
+
+  .hero-text-box button {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+}
 
   .hero-text-box p {
     font-size: 1.2rem;
   }
-}
-
 
 
 /* Zip Code Checker */
@@ -182,9 +212,8 @@
 .view-more-btn:hover {
   background-color: #e0559d;
 }
-
 .services-link-section-modern {
-  background: url('../assets/cleaning-bg.jpg') no-repeat center center/cover;
+  background: url('/assets/cleaning-bg.jpg') no-repeat center center/cover;
   padding: 4rem 1.5rem;
   border-radius: 24px;
   margin: 3rem auto;
@@ -195,7 +224,7 @@
 }
 
 .services-overlay {
-  
+  background: linear-gradient(to right, #00000099, #000000cc);
   padding: 3rem 2rem;
   border-radius: 24px;
   display: flex;
